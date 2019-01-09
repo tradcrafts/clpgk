@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-;;; pl.lisp Time-stamp: <2019-01-09 11:43:34 user> (incremental autotitle)
+;;; pl.lisp Time-stamp: <2019-01-09 21:25:23 user> (incremental autotitle)
 
 
 ;; コンパイル必須！

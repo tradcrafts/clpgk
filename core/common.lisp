@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (oleo.core.init:define-package :oleo.core.common ()
   (:use :cl)

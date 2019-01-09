@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 ;; テスト
 (eval-when (:compile-toplevel :load-toplevel :execute) (oleo.core.reader:enable-reader))

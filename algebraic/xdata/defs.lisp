@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (in-package :oleo.algebraic.xdata)
 

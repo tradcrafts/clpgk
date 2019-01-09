@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (oleo.base:define-package oleo.algebraic.xdata ()
   (:use :cl :oleo.base)

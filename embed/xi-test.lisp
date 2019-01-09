@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.base:oleo-base-header :clap)
 (oleo.base:define-package :xi-test ()
   (:use :cl :oleo.base :oleo.algebraic :oleo.embed))

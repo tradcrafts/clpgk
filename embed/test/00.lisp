@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (in-package :qi-test-package)
 (cluw:common-header :qi)

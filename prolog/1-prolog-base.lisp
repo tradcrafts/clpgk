@@ -1,4 +1,4 @@
-; prolog.lisp Time-stamp: <2018-10-05 19:02:51 USER> 
+;; -*- coding: utf-8 -*-
 
 (oleo.base:oleo-base-header)
 

@@ -1,4 +1,5 @@
-;; J-HEADER  Time-stamp: <2018-10-06 21:02:24 USER> [incremental,autotitle]
+;; -*- coding: utf-8 -*-
+
 (in-package :oleo.core.reader)
 
 ;(setf *readtable* (copy-readtable))

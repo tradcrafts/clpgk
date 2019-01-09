@@ -1,4 +1,5 @@
-;; J-INIT  Time-stamp: <2018-10-05 15:55:07 USER> {incremental autotitle}
+;; -*- coding: utf-8 -*-
+
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (oleo.core.reader:enable-reader))
 

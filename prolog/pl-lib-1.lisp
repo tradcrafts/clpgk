@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.base:oleo-base-header)
 (in-package :oleo.prolog)
 

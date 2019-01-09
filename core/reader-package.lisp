@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.core.init:define-package :oleo.core.reader ()
   (:import/export :oleo.core.ext)
   (:use :cl :anaphora :alexandria :split-sequence :cl-annot)

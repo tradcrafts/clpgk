@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (eval-when (:compile-toplevel :load-toplevel :execute) (oleo.core.reader:enable-reader))
 
 (in-package :oleo.core.test)

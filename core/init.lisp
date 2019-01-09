@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (defpackage :oleo.core.init
   (:use :cl :kmrcl)

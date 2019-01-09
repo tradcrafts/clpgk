@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (defpackage :clap-test-1
   (:use :cl :clap-test)
   )

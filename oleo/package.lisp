@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.base:define-package :oleo ()
   (:use :cl)
   (:import/export :oleo.base :oleo.algebraic.core :oleo.embed :oleo.prolog)

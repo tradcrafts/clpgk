@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (DEFUN pmatch (V540 V541) (pmatch-help V540 V541 NIL))
 

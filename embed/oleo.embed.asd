@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (in-package :cl-user)
 ;(defpackage :cl.algebraic.qi-asd
 ;  (:use :cl :asdf))

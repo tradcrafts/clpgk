@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (in-package :oleo.core.reader)
 (enable-annot-syntax)
 

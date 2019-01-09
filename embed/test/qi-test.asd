@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (asdf:defsystem :qi-test
   :depends-on (:qi)

@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 ;; @ clip
 
 (oleo.core.init:define-package :oleo.core.ext ()

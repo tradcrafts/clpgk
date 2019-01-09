@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (oleo.base:define-package :oleo.embed ()
   (:use :cl :oleo.base :oleo.prolog :oleo.embed.core)

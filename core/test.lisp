@@ -1,3 +1,4 @@
+k;; -*- coding: utf-8 -*-
 
 (in-package :oleo.core.test)
 

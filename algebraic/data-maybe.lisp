@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (in-package :clap)
 (common-header :xi)
 

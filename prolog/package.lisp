@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.base:define-package :oleo.prolog ()
   (:use :cl :oleo.base)
   ;(:nicknames :prolog :pl)

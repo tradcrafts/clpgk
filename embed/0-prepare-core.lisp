@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and

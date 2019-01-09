@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.core.init:define-package :oleo.core.primary-annotations ()
   (:use :cl :oleo.core.init :alexandria :anaphora :cl-annot :metabang-bind)
 

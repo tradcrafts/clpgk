@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (defpackage :oleo.mspace
   (:use :cl) ;; <<- これをしないとCCLでエラーがでる。シンボル|@|について競合するとかなんとか…
   (:nicknames :oleo.core.monolithic-name-space))

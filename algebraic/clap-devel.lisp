@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (in-package :clap-user)
 (common-header)
 
