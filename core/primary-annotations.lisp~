@@ -1,9 +1,0 @@
-(oleo.core.init:define-package :oleo.core.primary-annotations ()
-  (:use :cl :oleo.core.init :anaphora :cl-annot )
-
-  (:export
-   #:define-package ;; import from oleo.core.init
-   #:export* ;; import from oleo.core.init
-   )
-  )
-

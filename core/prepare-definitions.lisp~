@@ -1,8 +1,0 @@
-(oleo.core.init:define-package :oleo.core.prepare-definitions ()
-  (:use :cl :oleo.core.init :anaphora :cl-annot )
-
-  (:import/export :oleo.core.primary-annotations)
-  (:import/export-from metabang-bind #:bind)
-  (:import/export-from split-sequence #:split-sequence #:split-sequence-if #:split-sequence-if-not)
-
-  )

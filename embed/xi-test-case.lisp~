@@ -1,3 +1,0 @@
-(in-package :xi-test)
-(common-header :xi)
-
