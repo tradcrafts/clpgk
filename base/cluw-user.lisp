@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 (oleo.base:define-package #:cluw-user ()
   (:use :cl :cl-user :cluw)

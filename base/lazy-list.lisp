@@ -1,4 +1,5 @@
-;; J-LAZYLIST   Time-stamp: <2018-10-05 16:07:42 USER> [incremental,autotitle]
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 
 (oleo.core:define-package :oleo.base.lazy-list* (:oleo.base.lazy-list)

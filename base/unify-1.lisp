@@ -1,4 +1,5 @@
-;; J-UNIFY-1  Time-stamp: <2018-10-06 22:14:57 USER>    (incremental autotitle)
+;; -*- coding: utf-8 -*-
+
 (in-package :cl-user)
 
 (oleo.core:oleo-core-header)

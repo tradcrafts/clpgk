@@ -1,3 +1,5 @@
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 ;(extern :cl-cont)
 ;(declaim (optimize (speed 3)

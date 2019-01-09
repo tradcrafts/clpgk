@@ -1,4 +1,5 @@
 ;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 (in-package :oleo.base.text)
 

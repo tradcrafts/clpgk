@@ -1,4 +1,5 @@
-;; @ clip
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 
 (oleo.core:define-package :oleo.base.ffi* (:oleo.base.ffi)

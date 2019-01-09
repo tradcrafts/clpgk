@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 
 (asdf:defsystem :oleo.base
   :depends-on (:oleo.core :alexandria :kmrcl :metabang-bind :split-sequence :anaphora

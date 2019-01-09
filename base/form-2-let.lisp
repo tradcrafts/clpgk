@@ -1,4 +1,4 @@
-;; J-FORM  Time-stamp: <2018-10-05 16:06:53 USER> {incremental autotitle}
+;; -*- coding: utf-8 -*-
 
 (oleo.core:oleo-core-header)
 (in-package :oleo.base.form)

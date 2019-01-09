@@ -1,4 +1,4 @@
-;; J-UNIFY-3 型マッチング Time-stamp: <2018-10-05 16:09:40 USER>    (incremental autotitle)
+;; -*- coding: utf-8 -*-
 
 (oleo.core:oleo-core-header)
 

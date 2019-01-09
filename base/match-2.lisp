@@ -1,4 +1,4 @@
-;; J-MORE-UNIFY-MATCH-DEFS Time-stamp: <2018-10-05 16:08:03 USER>
+;; -*- coding: utf-8 -*-
 
 (oleo.core:oleo-core-header)
 

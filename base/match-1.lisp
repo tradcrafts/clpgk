@@ -1,4 +1,5 @@
-;; J-MATCH  Time-stamp: <2019-01-09 11:40:35 user>    (incremental autotitle)
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
 
 (oleo.core:define-package :oleo.base.match* (:oleo.base.match)

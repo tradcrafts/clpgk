@@ -1,4 +1,5 @@
-;; J-TEXT.LISP  Time-stamp: <2018-10-05 16:08:15 USER> [autotitle,incremental]
+;; -*- coding: utf-8 -*-
+
 (oleo.core:oleo-core-header)
  
 (oleo.core:define-package :oleo.base.text* (:oleo.base.text)

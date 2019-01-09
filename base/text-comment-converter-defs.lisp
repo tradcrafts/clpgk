@@ -1,3 +1,4 @@
+;; -*- coding: utf-8 -*-
 ;; #||#形式のコメントリーダの特殊コンバータ群の定義
 
 (oleo.core:oleo-core-header)

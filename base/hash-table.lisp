@@ -1,4 +1,4 @@
-;; NAME-HASH-TABLE Time-stamp: <2018-10-05 16:07:27 USER> [autotitle,overwrite]
+;; -*- coding: utf-8 -*-
 
 (oleo.core:oleo-core-header)
 
