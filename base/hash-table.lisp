@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base.hash-table* (:oleo.base.hash-table)
+(clpgk.core:define-package :clpgk.base.hash-table* (:clpgk.base.hash-table)
   (:use :cl)
-  (:import/export :oleo.base.hlist*)
+  (:import/export :clpgk.base.hlist*)
   (:export
 
    ;;for NAME-HASH-TABLE
@@ -27,7 +29,7 @@
    )
   )
 
-(in-package :oleo.base.hash-table)
+(in-package :clpgk.base.hash-table)
 
 ;; シンボル専用ハッシュテーブル
 ;; シンボルの名前で検索するため、パッケージ横断した同名のシンボルは同一のキーと見做す

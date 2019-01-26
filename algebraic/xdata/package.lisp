@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.base:define-package oleo.algebraic.xdata ()
-  (:use :cl :oleo.base)
+(clpgk.base:define-package clpgk.algebraic.xdata ()
+  (:use :cl :clpgk.base)
   (:export
    #:P2
 

@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
-(oleo.core:oleo-core-header)
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:define-package :oleo.base.iterate* (:oleo.base.iterate)
+(clpgk.core:clpgk-core-header)
+
+(clpgk.core:define-package :clpgk.base.iterate* (:clpgk.base.iterate)
   (:use :cl)
-  (:import/export :oleo.base.lazy-list*)
+  (:import/export :clpgk.base.lazy-list*)
   (:export
    #:iterator-p
    #:itor-begin #:itor-rbegin
@@ -16,7 +19,7 @@
    #:do-each
   ))
 
-(in-package :oleo.base.iterate)
+(in-package :clpgk.base.iterate)
 
 
 

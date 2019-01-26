@@ -1,11 +1,13 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core.init:define-package :oleo.core.primary-annotations ()
-  (:use :cl :oleo.core.init :alexandria :anaphora :cl-annot :metabang-bind)
+(clpgk.core.init:define-package :clpgk.core.primary-annotations ()
+  (:use :cl :clpgk.core.init :alexandria :anaphora :cl-annot :metabang-bind)
 
   (:export
-   #:define-package ;; import from oleo.core.init
-   #:export* ;; import from oleo.core.init
+   #:define-package ;; import from clpgk.core.init
+   #:export* ;; import from clpgk.core.init
 
 
    ;; `CL-ANNOT' annotation utility
@@ -35,7 +37,7 @@
    )
   )
 
-(in-package :oleo.core.primary-annotations)
+(in-package :clpgk.core.primary-annotations)
 ;;;;;;;;;;;;;;;;
 ;; Annotation
 ;;;;;;;;;;;;;;;;

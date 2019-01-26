@@ -1,11 +1,13 @@
 ;; -*- coding: utf-8 -*-
-;;; pl.lisp Time-stamp: <2019-01-09 21:25:23 user> (incremental autotitle)
-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 ;; コンパイル必須！
 ;; 関数search-rulesは、末尾再帰最適化によるループ構造を必要とする
 
-
+;; ----------------------------------------------------------------
+;; ----------------- ORIGINAL GAMBOL LICENSE ----------------------
+;; ----------------------------------------------------------------
 
 ;;; -*- Mode: LISP; Syntax: Common-lisp; Package: gambol; Lowercase: Yes -*-
 ;;;
@@ -48,14 +50,14 @@
 
 ;; Gambol
 
-(oleo.base:oleo-base-header)
+(clpgk.base:clpgk-base-header)
 
 (declaim (optimize (speed 3)
                    (compilation-speed 0)))
 
 
-(defpackage :oleo.prolog.core
-  (:use :cl :oleo.base :cl-cont)
+(defpackage :clpgk.prolog.core
+  (:use :cl :clpgk.base :cl-cont)
   ;(:nicknames :prolog-core)
   ;(:use :common-lisp :common :cl-cont :anaphora :alexandria :j-hash-table :j-lazylist)
   (:export 
@@ -86,7 +88,7 @@
    #:&parallel-prolog #:&do-parallel-prolog-collect
    ))
 
-(in-package :oleo.prolog.core)
+(in-package :clpgk.prolog.core)
 
 ;(EVAL-WHEN (:compile-toplevel :load-toplevel :execute)
  

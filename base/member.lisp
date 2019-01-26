@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
-(oleo.core:oleo-core-header)
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:define-package :oleo.base.member* (:oleo.base.member)
+(clpgk.core:clpgk-core-header)
+
+(clpgk.core:define-package :clpgk.base.member* (:clpgk.base.member)
   (:use :cl)
-  (:import/export :oleo.base.attr*)
+  (:import/export :clpgk.base.attr*)
   (:export 
    #:call-member
    #:symbol-member
@@ -13,7 +16,7 @@
    #:define-member-slot
    #:define-member-accessor))
 
-(in-package :oleo.base.member)
+(in-package :clpgk.base.member)
 
 
 (defparameter *selector-symbol-table* (make-hash-table))
@@ -229,9 +232,9 @@
 
 
 (defun <register-readers> ()
-  @select-reader oleo.core.reader::%internal%
+  @select-reader clpgk.core.reader::%internal%
   (set-macro-character #\] (get-macro-character #\)))
-  @select-reader oleo.core.reader::%internal%
+  @select-reader clpgk.core.reader::%internal%
   (set-macro-character 
    #\[
    (lambda (stream char)

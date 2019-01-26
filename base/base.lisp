@@ -1,13 +1,15 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base ()
+(clpgk.core:define-package :clpgk.base ()
   (:use :cl)
-  (:import/export :oleo.base.ffi*)
+  (:import/export :clpgk.base.ffi*)
   (:export
 
-   #:oleo-base-header
+   #:clpgk-base-header
    
    #:wired-p
    #:unwired-p
@@ -18,13 +20,13 @@
    #:complete-and-register-wiring
    )
 
-  (:unexport #:oleo-core-header)
+  (:unexport #:clpgk-core-header)
   )
 
-(in-package :oleo.base)
+(in-package :clpgk.base)
 
-(defmacro oleo-base-header (&rest args)
-  `(oleo.core:oleo-core-header ,@args))
+(defmacro clpgk-base-header (&rest args)
+  `(clpgk.core:clpgk-core-header ,@args))
 
 (defparameter *app-wired-p* t)
 

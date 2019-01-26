@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
-;; @ clip
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core.init:define-package :oleo.core.ext ()
-  (:use :cl :oleo.core.init :anaphora :cl-annot )
 
-  (:import/export :oleo.core.basic-definitions)
+(clpgk.core.init:define-package :clpgk.core.ext ()
+  (:use :cl :clpgk.core.init :anaphora :cl-annot )
+
+  (:import/export :clpgk.core.basic-definitions)
 
   #+clisp (:import-from ext #:string-concat #:getenv #:memoized #:with-collect)
   #-clisp (:import-from kmrcl #:getpid)
@@ -69,7 +71,7 @@
 
   )
 
-(in-package :oleo.core.ext)
+(in-package :clpgk.core.ext)
 
 (defun <error/not-implemented> (type sym args)
   (error "the ~A `~A' is not implemented!! args=~A" type sym args))

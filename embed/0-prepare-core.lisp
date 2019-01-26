@@ -1,5 +1,11 @@
 ;; -*- coding: utf-8 -*-
-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+;;
+;; -------------------------------------------------
+;; --------------ORIGINAL Qi LICENSE ---------------
+;; -------------------------------------------------
+;;
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and
@@ -31,7 +37,7 @@
   (SETF (READTABLE-CASE *READTABLE*) :PRESERVE)
   )
 
-(DEFPACKAGE :OLEO.EMBED.CORE
+(DEFPACKAGE :CLPGK.EMBED.CORE
   ;; make-package in sbcl will not use the common-lisp
   ;; package by default, so I changed it to defpackage
   (:EXPORT 
@@ -40,13 +46,13 @@
    #:*QI-READTABLE*
    
    )
-  (:USE :CL :OLEO.BASE :OLEO.ALGEBRAIC.CORE :OLEO.ALGEBRAIC.XDATA :OLEO.PROLOG)
+  (:USE :CL :CLPGK.BASE :CLPGK.ALGEBRAIC.CORE :CLPGK.ALGEBRAIC.XDATA :CLPGK.PROLOG)
   (:SHADOW CL:DEFUN)
   )
 
-(DEFVAR OLEO.EMBED.CORE:*QI-READTABLE* *READTABLE*)
+(DEFVAR CLPGK.EMBED.CORE:*QI-READTABLE* *READTABLE*)
 
-(IN-PACKAGE :OLEO.EMBED.CORE)
+(IN-PACKAGE :CLPGK.EMBED.CORE)
 
 
 (DEFPARAMETER *<DEFTEST>* NIL)

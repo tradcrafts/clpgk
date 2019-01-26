@@ -1,7 +1,10 @@
 ;; -*- coding: utf-8 -*-
-(oleo.core:oleo-core-header)
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(in-package :oleo.base.text)
+(clpgk.core:clpgk-core-header)
+
+(in-package :clpgk.base.text)
 
 ;; `+<charset-to-external-format-conversion-table>+' は定数である
 ;; 環境非依存のエンコーディング定数とCL実装異存のエンコーディング定数の対応表

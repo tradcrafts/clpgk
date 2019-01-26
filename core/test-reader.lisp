@@ -1,6 +1,8 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(in-package :oleo.core.test)
+(in-package :clpgk.core.test)
 
 ;; @eval-when-test form は、当該パッケージがテスト環境を必要とする場合にのみformを有効化する
 (define-annotation eval-when-test (form)

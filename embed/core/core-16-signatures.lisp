@@ -1,4 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+;;
+;; -------------------------------------------------
+;; --------------ORIGINAL Qi LICENSE ---------------
+;; -------------------------------------------------
+;;
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and
@@ -27,7 +34,7 @@
   (SETF (READTABLE-CASE *READTABLE*) :PRESERVE)
   )
 
-(IN-PACKAGE :OLEO.EMBED.CORE)
+(IN-PACKAGE :CLPGK.EMBED.CORE)
 
 '(DEFVAR *signatures*
  (MAKE-HASH-TABLE :SIZE 300 :REHASH-SIZE 2 :REHASH-THRESHOLD 0.8))
@@ -221,13 +228,13 @@
   (LET ((dst (SECOND (SVREF fake-string 1))))
     `(DO-UNIFY-IF (,(lisp-form NIL src) ,dst)
        ,(lisp-form NIL main)
-       (ERROR "OLEO.LE: OLEO:UNIFY FAILED: ~W" ',dst))))
+       (ERROR "CLPGK.LE: CLPGK:UNIFY FAILED: ~W" ',dst))))
 
 (DEFMACRO <<lisp/match>> (fake-string src main)
   (LET ((dst (SECOND (SVREF fake-string 1))))
     `(DO-MATCH-IF (,(lisp-form NIL src) ,dst)
        ,(lisp-form NIL main)
-       (ERROR "OLEO.LE: OLEO:MATCH FAILED: ~W" ',dst))))
+       (ERROR "CLPGK.LE: CLPGK:MATCH FAILED: ~W" ',dst))))
 
 ;(DEFMACRO <<lisp-code-with-xi-vars>> (fake-string consed-vars)
 ;  `'(,fake-string ,consed-vars ,(<from-consing> consed-vars)))

@@ -1,5 +1,11 @@
 ;; -*- coding: utf-8 -*-
-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+;;
+;; -------------------------------------------------
+;; --------------ORIGINAL Qi LICENSE ---------------
+;; -------------------------------------------------
+;;
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and
@@ -28,7 +34,7 @@
   (SETF (READTABLE-CASE *READTABLE*) :PRESERVE)
   )
 
-(IN-PACKAGE :OLEO.EMBED.CORE)
+(IN-PACKAGE :CLPGK.EMBED.CORE)
 
 (DEFVAR *<CALLER-PACKAGE>*)
 
@@ -611,7 +617,7 @@
      (LET ((arity (LIST-LENGTH (CDR V1))))
        (WHEN (> arity *TUPLE-MAX*) 
          (ERROR "(xi: in (@p ...): too many elements: MAX=~A" *TUPLE-MAX*))
-       (proc_specialforms (CONS (SVREF OLEO.ALGEBRAIC.CORE::%TUPLE-CONVERSION-VECTOR% arity) (CDR V1)))))
+       (proc_specialforms (CONS (SVREF CLPGK.ALGEBRAIC.CORE::%TUPLE-CONVERSION-VECTOR% arity) (CDR V1)))))
 
    ;; HACK [2018-09-14] 効率のよい実装にすべき
    ;; ３値以上の@cの展開
@@ -630,18 +636,18 @@
    ;;; (symbol# x) -> (@p symbol# x)
    ;;; (symbol# x y...) -> (@p symbol# (# x y...))
    ((AND (CONSP V1) (SYMBOLP (CAR V1))
-         (GET (CAR V1) 'OLEO.ALGEBRAIC.XDATA::|%data_tag%|)
+         (GET (CAR V1) 'CLPGK.ALGEBRAIC.XDATA::|%data_tag%|)
          ;; (NOT (MEMBER (CAR V1) '(|cons| |@p|))) ;; <<- この判定は単なる高速化のため 
          ;; (LET ((symName (SYMBOL-NAME (CAR V1))))  
          ;;   (EQ #\# (CHAR symName (1- (LENGTH symName)))))
          )
 
      ;;(PRINT V1)
-     ;;(UNLESS (GET (CAR V1) 'OLEO.ALGEBRAIC.XDATA::|%data_tag%|) (WARN "xi: (~A ...) is unknown type constructor" (CAR V1)))
+     ;;(UNLESS (GET (CAR V1) 'CLPGK.ALGEBRAIC.XDATA::|%data_tag%|) (WARN "xi: (~A ...) is unknown type constructor" (CAR V1)))
 
      (LET* ((ctor (CAR V1))
-            (data-tag (GET ctor 'OLEO.ALGEBRAIC.XDATA::|%data_tag%|))
-            (data-arity (GET ctor 'OLEO.ALGEBRAIC.XDATA::|%data_arity%|))
+            (data-tag (GET ctor 'CLPGK.ALGEBRAIC.XDATA::|%data_tag%|))
+            (data-arity (GET ctor 'CLPGK.ALGEBRAIC.XDATA::|%data_arity%|))
             (args (CDR V1))
             (n (LENGTH args)))
        (proc_specialforms

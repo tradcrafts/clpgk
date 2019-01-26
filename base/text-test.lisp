@@ -1,8 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+
 ;; テスト
 
-(oleo.core:oleo-core-header)
-(in-package :oleo.base.text)
+(clpgk.core:clpgk-core-header)
+(in-package :clpgk.base.text)
 
 
 #Verify このファイルがCRLF形式であることの確認

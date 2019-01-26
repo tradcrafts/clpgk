@@ -1,8 +1,10 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(eval-when (:compile-toplevel :load-toplevel :execute) (oleo.core.reader:enable-reader))
+(eval-when (:compile-toplevel :load-toplevel :execute) (clpgk.core.reader:enable-reader))
 
-(in-package :oleo.core.test)
+(in-package :clpgk.core.test)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  テスト ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

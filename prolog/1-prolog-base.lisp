@@ -1,9 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.base:oleo-base-header)
+(clpgk.base:clpgk-base-header)
 
-(oleo.base:define-package :oleo.prolog.base ()
-  (:use :cl :oleo.base :oleo.prolog.core)
+(clpgk.base:define-package :clpgk.prolog.base ()
+  (:use :cl :clpgk.base :clpgk.prolog.core)
   ;(:nicknames :pl :prolog)
   ;; (:import-from 
   ;;  :prolog-core
@@ -71,7 +73,7 @@
 
    ))
 
-(in-package :oleo.prolog.base) 
+(in-package :clpgk.prolog.base) 
 
 
 (defmacro consult (rule-name &body defs)

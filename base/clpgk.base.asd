@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(asdf:defsystem :oleo.base
-  :depends-on (:oleo.core :alexandria :kmrcl :metabang-bind :split-sequence :anaphora
+(asdf:defsystem :clpgk.base
+  :depends-on (:clpgk.core :alexandria :kmrcl :metabang-bind :split-sequence :anaphora
                            :cl-ppcre :cl-annot :cl-cont :cffi)
   :serial t
   :components (

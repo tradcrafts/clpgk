@@ -1,6 +1,8 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(in-package :oleo.core.reader)
+(in-package :clpgk.core.reader)
 
 ;(setf *readtable* (copy-readtable))
 ;(enable-annot-syntax)

@@ -1,11 +1,13 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core.init:define-package :oleo.core.common ()
+(clpgk.core.init:define-package :clpgk.core.common ()
   (:use :cl)
-  (:import/export :oleo.core.pre)
+  (:import/export :clpgk.core.pre)
                                         ;(:import/export :anaphora :metabang-bind)
-  ;(:import/export-from oleo.base.ext #:define-package #:string-concat #:memoized)
-  ;(:import/export-from oleo.base.test #:enable-testing #:disable-testing #:precond)
+  ;(:import/export-from clpgk.base.ext #:define-package #:string-concat #:memoized)
+  ;(:import/export-from clpgk.base.test #:enable-testing #:disable-testing #:precond)
   (:import/export-from anaphora #:it #:aif #:awhen #:acond #:acase #:alet)
   (:import/export-from anaphora
                        #:aand 		#:accase
@@ -107,15 +109,15 @@
            
 
 
-           #:oleo-core-header
+           #:clpgk-core-header
 
            ;; annotations
            ;#:proc
            ))
 
-(in-package :oleo.core.common)
+(in-package :clpgk.core.common)
 
-(defmacro oleo-core-header (&rest ident-extra-readers)
+(defmacro clpgk-core-header (&rest ident-extra-readers)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
     (enable-reader ',ident-extra-readers)
     ;; 浮動小数点数表現は倍精度として読み込ませる

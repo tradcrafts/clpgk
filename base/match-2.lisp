@@ -1,12 +1,14 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
 ;(defpkg :j-more-unify-match-defs ())
 
 ;(in-package :j-more-unify-match-defs)
 
-(in-package :oleo.base.match)
+(in-package :clpgk.base.match)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; MATCH MACROS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -48,20 +50,20 @@
   (apply (lambda (&key enumerated &allow-other-keys) enumerated)
          xs))
 
-(defmacro OLEO.BASE.UNIFY:u-case (x &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-case (x &body clauses)
   (with-gensyms (tmp)
     `(let ((,tmp ,x))
       ,(<*-case> 'u-case 'if 'do-unify-if tmp nil clauses))))
-(defmacro OLEO.BASE.MATCH:m-case (x &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-case (x &body clauses)
   (with-gensyms (tmp)
     `(let ((,tmp ,x))
       ,(<*-case> 'm-case 'if 'do-match-if tmp nil clauses))))
 
-(defmacro OLEO.BASE.UNIFY:u-gcase (x &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-gcase (x &body clauses)
   (with-gensyms (tmp)
     `(let ((,tmp ,x))
       ,(<*-case> 'u-gcase 'gif 'do-unify-gif tmp nil clauses))))
-(defmacro OLEO.BASE.MATCH:m-gcase (x &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-gcase (x &body clauses)
   (with-gensyms (tmp)
     `(let ((,tmp ,x))
       ,(<*-case> 'm-gcase 'gif 'do-match-gif tmp nil clauses))))
@@ -78,28 +80,28 @@
              `(let ((,tmp ,x))
                ,(<*-case> macroname if-op *-if-op tmp options clauses))))))
 
-(defmacro OLEO.BASE.UNIFY:u-case/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-case/w ((x &rest options) &body clauses)
   (<*-case/w> 'u-case/w 'if 'do-unify-if x options clauses))
-(defmacro OLEO.BASE.MATCH:m-case/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-case/w ((x &rest options) &body clauses)
   (<*-case/w> 'm-case/w 'if 'do-match-if x options clauses))
 
-(defmacro OLEO.BASE.UNIFY:u-gcase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-gcase/w ((x &rest options) &body clauses)
   (<*-case/w> 'u-case/w 'gif 'do-unify-gif x options clauses))
-(defmacro OLEO.BASE.MATCH:m-gcase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-gcase/w ((x &rest options) &body clauses)
   (<*-case/w> 'm-case/w 'gif 'do-match-gif x options clauses))
 
 
-(defmacro OLEO.BASE.UNIFY:u-acase (x &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-acase (x &body clauses)
   `(let ((it ,x))
     (u-case it ,@clauses)))
-(defmacro OLEO.BASE.MATCH:m-acase (x &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-acase (x &body clauses)
   `(let ((it ,x))
     (m-case it ,@clauses)))
 
-(defmacro OLEO.BASE.UNIFY:u-gacase (x &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-gacase (x &body clauses)
   `(let ((it ,x))
     (u-gcase it ,@clauses)))
-(defmacro OLEO.BASE.MATCH:m-gacase (x &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-gacase (x &body clauses)
   `(let ((it ,x))
     (m-gcase it ,@clauses)))
 
@@ -109,14 +111,14 @@
   `(let ((it ,x))
     (,*-case-op (it ,@options) ,@clauses)))
 
-(defmacro OLEO.BASE.UNIFY:u-acase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-acase/w ((x &rest options) &body clauses)
   (<*-acase/w> 'u-acase/w 'u-case/w x options clauses))
-(defmacro OLEO.BASE.MATCH:m-acase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-acase/w ((x &rest options) &body clauses)
   (<*-acase/w> 'm-acase/w 'm-case/w x options clauses))
 
-(defmacro OLEO.BASE.UNIFY:u-gacase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-gacase/w ((x &rest options) &body clauses)
   (<*-acase/w> 'u-gacase/w 'u-gcase/w x options clauses))
-(defmacro OLEO.BASE.MATCH:m-gacase/w ((x &rest options) &body clauses)
+(defmacro CLPGK.BASE.MATCH:m-gacase/w ((x &rest options) &body clauses)
   (<*-acase/w> 'm-gacase/w 'm-gcase/w x options clauses))
 
 
@@ -134,14 +136,14 @@
           clauses
           :from-end t :initial-value nil))
 
-(defmacro OLEO.BASE.UNIFY:u-cond (&body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-cond (&body clauses)
   (<*-cond> 'u-cond 'if 'do-unify-if clauses))
-(defmacro OLEO.BASE.MATCH:m-cond (&body clauses)
+(defmacro CLPGK.BASE.MATCH:m-cond (&body clauses)
   (<*-cond> 'm-cond 'if 'do-match-if clauses))
 
-(defmacro OLEO.BASE.UNIFY:u-gcond (&body clauses)
+(defmacro CLPGK.BASE.UNIFY:u-gcond (&body clauses)
   (<*-cond> 'u-gcond 'gif 'do-unify-gif clauses))
-(defmacro OLEO.BASE.MATCH:m-gcond (&body clauses)
+(defmacro CLPGK.BASE.MATCH:m-gcond (&body clauses)
   (<*-cond> 'm-gcond 'gif 'do-match-gif clauses))
 
 
@@ -165,9 +167,9 @@
     (progn ,@body)
     (error "*-BIND: ~D failed" ',pairs)))
 
-(defmacro OLEO.BASE.UNIFY:u-bind ((&rest pairs) &body body)
+(defmacro CLPGK.BASE.UNIFY:u-bind ((&rest pairs) &body body)
   (<*-bind> 'u-bind 'do-unify-if pairs body))
-(defmacro OLEO.BASE.MATCH:m-bind ((&rest pairs) &body body)
+(defmacro CLPGK.BASE.MATCH:m-bind ((&rest pairs) &body body)
   (<*-bind> 'm-bind 'do-match-if pairs body))
 
 
@@ -184,7 +186,7 @@
           pairs
           :from-end t :initial-value `(progn ,@body)))
 
-(defmacro OLEO.BASE.UNIFY:u-bind* ((&rest pairs) &body body)
+(defmacro CLPGK.BASE.UNIFY:u-bind* ((&rest pairs) &body body)
   (<*-bind*> 'u-bind* 'do-unify-if pairs body))
-(defmacro OLEO.BASE.MATCH:m-bind* ((&rest pairs) &body body)
+(defmacro CLPGK.BASE.MATCH:m-bind* ((&rest pairs) &body body)
   (<*-bind*> 'm-bind* 'do-match-if pairs body))

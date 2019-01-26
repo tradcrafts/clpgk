@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base.lazy-list* (:oleo.base.lazy-list)
+(clpgk.core:define-package :clpgk.base.lazy-list* (:clpgk.base.lazy-list)
   (:use :cl :cl-cont)
-  (:import/export :oleo.base.cont*)
+  (:import/export :clpgk.base.cont*)
   (:export 
    #:&cons #:&cons! #:&list #:&list*
    #:&length
@@ -51,7 +53,7 @@
    #:&recurs #:&recurs*
    ))
 
-(in-package :oleo.base.lazy-list)
+(in-package :clpgk.base.lazy-list)
 
 (defmacro unbound (place) 
   (let ((v (gensym)))

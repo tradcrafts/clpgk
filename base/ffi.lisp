@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base.ffi* (:oleo.base.ffi)
+(clpgk.core:define-package :clpgk.base.ffi* (:clpgk.base.ffi)
   (:use :cl)
-  (:import/export :oleo.base.iterate*)
+  (:import/export :clpgk.base.iterate*)
 
   (:export
    #:define-c-library
@@ -19,7 +21,7 @@
    #:as-garbage #:cancel-garbage
    ))
 
-(in-package :oleo.base.ffi)
+(in-package :clpgk.base.ffi)
 
 (defmacro c-call (return-type c-function-name &rest type-and-value-pairs)
   `(cffi:foreign-funcall ,c-function-name ,@type-and-value-pairs ,return-type))

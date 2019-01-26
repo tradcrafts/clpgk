@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.base:oleo-base-header)
-(in-package :oleo.algebraic.core)
+(clpgk.base:clpgk-base-header)
+(in-package :clpgk.algebraic.core)
 
 ;; Maybe
 

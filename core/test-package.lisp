@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core.init:define-package :oleo.core.test ()
-  (:import/export :oleo.core.reader)
+(clpgk.core.init:define-package :clpgk.core.test ()
+  (:import/export :clpgk.core.reader)
   (:use :cl :alexandria)
 
   (:export

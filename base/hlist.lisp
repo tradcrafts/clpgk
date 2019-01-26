@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base.hlist* (:oleo.base.hlist)
+(clpgk.core:define-package :clpgk.base.hlist* (:clpgk.base.hlist)
   (:use :cl)
-  (:import/export :oleo.base.list*)
+  (:import/export :clpgk.base.list*)
   (:export
 
    #:hcell ;; classname
@@ -50,7 +52,7 @@
    #:hdelete #:hdelete-if #:hdelete-if-not
    #:hnbutlast
     ))
-(in-package :oleo.base.hlist)
+(in-package :clpgk.base.hlist)
 
 
 
@@ -1222,7 +1224,7 @@
         (lines (split-sequence #\Newline s))
         tmp)
    (dolist (x lines)
-     (let* ((vec (oleo.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
+     (let* ((vec (clpgk.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
             (author (first vec))
             (title (second vec)))
        (unless (member author tmp :test 'equalp)
@@ -1236,7 +1238,7 @@
         (lines (split-sequence #\Newline s))
         tmp)
    (dolist (x lines)
-     (let* ((vec (oleo.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
+     (let* ((vec (clpgk.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
             (author (first vec))
             (title (second vec)))
        (push (format nil "move \"~A\" \"~A\\[~A] ~A\"~%" x author author title)
@@ -1251,5 +1253,5 @@
 
  
  
-(oleo.base.text::text-scan  "(.*)-(.*)" "a-aa" :output :sub-strings)
+(clpgk.base.text::text-scan  "(.*)-(.*)" "a-aa" :output :sub-strings)
  

@@ -1,14 +1,16 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 (in-package :cl-user)
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(defpackage :oleo.base.unify-global-var (:use))
+(defpackage :clpgk.base.unify-global-var (:use))
 
-(oleo.core:define-package :oleo.base.unify* (:oleo.base.unify)
+(clpgk.core:define-package :clpgk.base.unify* (:clpgk.base.unify)
   (:use :cl)
-  (:import/export :oleo.base.hash-table*)
+  (:import/export :clpgk.base.hash-table*)
   (:export 
    #:bound-unification-variable-p
    #:unbind-unification-variable
@@ -38,7 +40,7 @@
 )
 
 
-(in-package :oleo.base.unify)
+(in-package :clpgk.base.unify)
 
 
 
@@ -49,7 +51,7 @@
 
 (defvar *unify-rvalue* '|wrong-place|)
 ;@eval-always
-(defvar *pkg-unify-global-var* (find-package :oleo.base.unify-global-var))
+(defvar *pkg-unify-global-var* (find-package :clpgk.base.unify-global-var))
 
 (defun <register-readers> ()
   @select-reader :unify
@@ -86,16 +88,16 @@
 ;; {?a ?b symbol ...} -> (:-> ?a ?b sybmol :WHOLE ...)
 ;; なお、{}{?a}などが:ANDで構造化されるのは意図的なものであり、
 ;; 普通は構造化の意図を持って使用される（リスト・ベクタに対する評価順序の制御）
- @select-reader oleo.core.reader::%internal%
+ @select-reader clpgk.core.reader::%internal%
  (set-macro-character #\} (get-macro-character #\)))
 
- @select-reader oleo.core.reader::%internal%
+ @select-reader clpgk.core.reader::%internal%
  (set-macro-character 
   #\{
   (lambda (stream char)
     @ignore (char)
     (let* ((contents (read-delimited-list #\} stream t))
-           (main (member-if-not #/(and (symbolp _) (oleo.base.unify::is-var? _))
+           (main (member-if-not #/(and (symbolp _) (clpgk.base.unify::is-var? _))
                                 contents))
            (header (subseq contents 0 (- (length contents) (length main))))
            (x (car main)))
@@ -165,7 +167,7 @@
   (format stream "<uinfo>"))
 
 (defmacro internal-label (x) 
-  `(intern (concatenate 'string "_unif_label_" (symbol-name ,x)) :oleo.base.unify))
+  `(intern (concatenate 'string "_unif_label_" (symbol-name ,x)) :clpgk.base.unify))
 
 (defmacro unbound-var? (x) `(eq '*UNBOUND-UNIFICATION-VARIABLE* ,x))
 
@@ -505,12 +507,12 @@
         ((member h '(:length= :length/= :length< :length<= :length> :length>=))
          `(and 
            (typep ,var 'sequence)
-           (,(intern (symbol-name h) :oleo.base.unify) ,(second ptn) ,var)))
+           (,(intern (symbol-name h) :clpgk.base.unify) ,(second ptn) ,var)))
            
         ((member h '(:length<< :length<=< :length<=<= :length<<=))
          `(and 
            (typep ,var 'sequence)
-           (,(intern (symbol-name h) :oleo.base.unify) ,(second ptn) ,(third ptn) ,var)))
+           (,(intern (symbol-name h) :clpgk.base.unify) ,(second ptn) ,(third ptn) ,var)))
 
         ((eq :setf h)
          `(progn 
@@ -1261,8 +1263,8 @@
              (unless (and (proper-list-p (cdr ptn))
                           (<= 2 (length (cdr ptn))))
                (error "LIST*"))
-             (let* ((x (intern "!oleo.base.unify-list*-tmpvar!"))
-                    (x? (memoized (intern "??!oleo.base.unify-list*-tmpvar!"
+             (let* ((x (intern "!clpgk.base.unify-list*-tmpvar!"))
+                    (x? (memoized (intern "??!clpgk.base.unify-list*-tmpvar!"
                                           *pkg-unify-global-var*)))
                     (new-ptn/1 (append (butlast (cdr ptn)) x?))
                     (new-ptn/2 (lastcar ptn))

@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
-;; J-ATTR Time-stamp: <2019-01-09 11:29:59 user>
-(oleo.core:oleo-core-header)
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:define-package :oleo.base.attr* (:oleo.base.attr)
+(clpgk.core:clpgk-core-header)
+
+(clpgk.core:define-package :clpgk.base.attr* (:clpgk.base.attr)
   (:use :cl)
-  (:import/export :oleo.base.text*)
+  (:import/export :clpgk.base.text*)
   (:export
    #:data-attr
    #:type-attr
@@ -12,7 +14,7 @@
    #:attr
    ))
 
-(in-package :oleo.base.attr)
+(in-package :clpgk.base.attr)
 
 
 @eval-always

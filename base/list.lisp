@@ -1,13 +1,15 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
 ;; 競合するLENGTH=を退避
 ;;(unexport-and-escape 'alexandria:length=)
 
-(oleo.core:define-package :oleo.base.list* (:oleo.base.list)
+(clpgk.core:define-package :clpgk.base.list* (:clpgk.base.list)
   (:use :cl)
-  (:import/export :oleo.base.member*)
+  (:import/export :clpgk.base.member*)
    (:export
      
      #:alist-p #:alist
@@ -43,7 +45,7 @@
      #:recurs #:recurs*
      ))
 
-(in-package :oleo.base.list)
+(in-package :clpgk.base.list)
 
 (defun alist-p (x) (and (proper-list-p x)
                         (every #'consp x)))

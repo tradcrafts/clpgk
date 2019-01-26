@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
-(oleo.base:define-package #:cluw-user ()
+(clpgk.core:clpgk-core-header)
+(clpgk.base:define-package #:cluw-user ()
   (:use :cl :cl-user :cluw)
   )
 
@@ -36,7 +38,7 @@
         (lines (split-sequence #\Newline s))
         tmp)
    (dolist (x lines)
-     (let* ((vec (oleo.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
+     (let* ((vec (clpgk.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
             (author (first vec))
             (title (second vec)))
        (unless (member author tmp :test 'equalp)
@@ -50,7 +52,7 @@
         (lines (split-sequence #\Newline s))
         tmp)
    (dolist (x lines)
-     (let* ((vec (oleo.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
+     (let* ((vec (clpgk.base.text::text-scan  "(.*?)-(.*)" x :output :sub-strings-as-list))
             (author (first vec))
             (title (second vec)))
        (push (format nil "move \"~A\" \"~A\\[~A] ~A\"~%" x author author title)
@@ -65,5 +67,5 @@
 
  
  
-(oleo.base.text::text-scan  "(.*)-(.*)" "a-aa" :output :sub-strings)
+(clpgk.base.text::text-scan  "(.*)-(.*)" "a-aa" :output :sub-strings)
  

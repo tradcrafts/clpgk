@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.base:oleo-base-header)
-(in-package :oleo.algebraic.core)
+(clpgk.base:clpgk-base-header)
+(in-package :clpgk.algebraic.core)
 
 (defgeneric deconstructable-p (obj))
 (defgeneric deconstruct (obj &optional output)) ;==> values or list or vector
@@ -135,13 +137,13 @@
 
 
 
-;; global: sym -> OLEO.MSPACE::|@sym| , QSPACE::|sym#|
+;; global: sym -> CLPGK.MSPACE::|@sym| , QSPACE::|sym#|
 ;; local: sym-> @@sym , <sym#>
 
 (defun <make-xi-ident> (sym &optional local?)
   (let* ((name (symbol-name sym))
          (xi-base-name (string-downcase sym))
-         (q-pkg (memoized (find-package :oleo.mspace))))
+         (q-pkg (memoized (find-package :clpgk.mspace))))
     (if local?
       (values (intern (string-concat "@@" xi-base-name) *package*)
               (intern (string-concat "<" xi-base-name "#>") *package*))
@@ -153,7 +155,7 @@
 
 (defmethod print-object ((x DATATUPLE) stream)
   (let* ((type (type-of x))
-         (arity (get type 'oleo.algebraic.xdata::|%data_arity%|))
+         (arity (get type 'clpgk.algebraic.xdata::|%data_arity%|))
          (data (xtuple-snd x)))
     (case arity
       (0 (format stream "<~A>" type))
@@ -186,11 +188,11 @@
   (cond ((symbolp d)
           (multiple-value-bind (q-ident q-tag) (<make-xi-ident> d local?)
             (add `(defclass ,d ,(if superclass superclass '(DATATUPLE)) ())
-                 `(setf (get ',q-tag 'oleo.algebraic.xdata::|%classdata%|) ',d)
-                 `(setf (get ',q-ident 'oleo.algebraic.xdata::|%data_arity%|) 0)
-                 `(setf (get ',q-ident 'oleo.algebraic.xdata::|%data_tag%|) ',q-tag)
-                 `(setf (get ',d 'oleo.algebraic.xdata::|%data_arity%|) 0) ;;
-                 `(setf (get ',d 'oleo.algebraic.xdata::|%data_tag%|) ',q-tag) ;;
+                 `(setf (get ',q-tag 'clpgk.algebraic.xdata::|%classdata%|) ',d)
+                 `(setf (get ',q-ident 'clpgk.algebraic.xdata::|%data_arity%|) 0)
+                 `(setf (get ',q-ident 'clpgk.algebraic.xdata::|%data_tag%|) ',q-tag)
+                 `(setf (get ',d 'clpgk.algebraic.xdata::|%data_arity%|) 0) ;;
+                 `(setf (get ',d 'clpgk.algebraic.xdata::|%data_tag%|) ',q-tag) ;;
                  `(defun ,d () (memoized (xtuple ',q-tag nil ',d)))
                  `(define-symbol-macro ,d (,d)))))
         ((consp d)
@@ -234,11 +236,11 @@
                `(define-unification (,c t) `(typep ,this ',',c)
                  (:enum (:whole ,@(mapcar #/``(,',_ ,this) ids))))
 
-               `(setf (get ',q-tag 'oleo.algebraic.xdata::|%classdata%|) ',c)
-               `(setf (get ',q-ident 'oleo.algebraic.xdata::|%data_arity%|) ,arity)
-               `(setf (get ',q-ident 'oleo.algebraic.xdata::|%data_tag%|) ',q-tag)
-               `(setf (get ',c 'oleo.algebraic.xdata::|%data_arity%|) ,arity)
-               `(setf (get ',c 'oleo.algebraic.xdata::|%data_tag%|) ',q-tag)
+               `(setf (get ',q-tag 'clpgk.algebraic.xdata::|%classdata%|) ',c)
+               `(setf (get ',q-ident 'clpgk.algebraic.xdata::|%data_arity%|) ,arity)
+               `(setf (get ',q-ident 'clpgk.algebraic.xdata::|%data_tag%|) ',q-tag)
+               `(setf (get ',c 'clpgk.algebraic.xdata::|%data_arity%|) ,arity)
+               `(setf (get ',c 'clpgk.algebraic.xdata::|%data_tag%|) ',q-tag)
 
                
                (if single

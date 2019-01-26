@@ -1,13 +1,15 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(defpackage :oleo.mspace
+(defpackage :clpgk.mspace
   (:use :cl) ;; <<- これをしないとCCLでエラーがでる。シンボル|@|について競合するとかなんとか…
-  (:nicknames :oleo.core.monolithic-name-space))
+  (:nicknames :clpgk.core.monolithic-name-space))
 
-(oleo.core.init:define-package :oleo.core.basic-definitions ()
-  (:use :cl :oleo.core.init :anaphora :cl-annot)
+(clpgk.core.init:define-package :clpgk.core.basic-definitions ()
+  (:use :cl :clpgk.core.init :anaphora :cl-annot)
 
-  (:import/export :oleo.core.primary-annotations)
+  (:import/export :clpgk.core.primary-annotations)
   (:import/export-from metabang-bind #:bind)
   (:import/export-from split-sequence #:split-sequence #:split-sequence-if #:split-sequence-if-not)
 
@@ -31,7 +33,7 @@
   )
 
 
-(in-package :oleo.core.basic-definitions)
+(in-package :clpgk.core.basic-definitions)
 
 (eval-when (:compile-toplevel :load-toplevel)
   (setq *readtable* (copy-readtable))
@@ -40,7 +42,7 @@
 @package-optimize-level 1
 
 
-(defparameter *<pkg/mspace>* (find-package :oleo.mspace))
+(defparameter *<pkg/mspace>* (find-package :clpgk.mspace))
 
 (defun <has-lower-case?> (str)
   (find-if (lambda (c) (and (alpha-char-p c) (lower-case-p c)))

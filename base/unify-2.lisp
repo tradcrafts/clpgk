@@ -1,8 +1,10 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(in-package :oleo.base.unify)
+(in-package :clpgk.base.unify)
 
 
 

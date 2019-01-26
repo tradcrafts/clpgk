@@ -1,14 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 (in-package :cl-user)
-;(defpackage :cl.algebraic.qi-asd
-;  (:use :cl :asdf))
-;(in-package :cl.algebraic.qi-asd)
 
-(asdf:defsystem :oleo.embed
-  :version "0.1"
-  :author "j"
-  :depends-on (:oleo.base :oleo.algebraic :oleo.prolog)
+(asdf:defsystem :clpgk.embed
+  :depends-on (:clpgk.base :clpgk.algebraic :clpgk.prolog)
   :serial t
   :components ((:file "0-prepare-core")
                (:module "core"

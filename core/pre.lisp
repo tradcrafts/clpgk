@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
-  (oleo.core.reader:enable-reader))
+  (clpgk.core.reader:enable-reader))
 
-(oleo.core.init:define-package :oleo.core.pre ()
-  (:import/export :oleo.core.test)
+(clpgk.core.init:define-package :clpgk.core.pre ()
+  (:import/export :clpgk.core.test)
   (:use :cl :split-sequence :alexandria :anaphora)
   (:export
 
@@ -49,7 +51,7 @@
    ))
 
 
-(in-package :oleo.core.pre)
+(in-package :clpgk.core.pre)
 
 ;; すべて偽なら真となる。
 (defmacro none (&rest exps)
@@ -638,7 +640,7 @@
 
 comment...
 
-(in-package :oleo.base.ext)
+(in-package :clpgk.base.ext)
 (string-join '())
 
 

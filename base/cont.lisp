@@ -1,16 +1,18 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 ;(extern :cl-cont)
 ;(declaim (optimize (speed 3)
 ;                   (compilation-speed 0)))
 
 
-(oleo.core:define-package :oleo.base.cont* (:oleo.base.cont)
+(clpgk.core:define-package :clpgk.base.cont* (:clpgk.base.cont)
 
   ;(:import-from :util.pre.symbols #:fail)
   (:use :cl :cl-cont)
-  (:import/export :oleo.base.form*)
+  (:import/export :clpgk.base.form*)
   (:export 
 
    #:promise-p
@@ -48,7 +50,7 @@
    ))
 
 
-(in-package :oleo.base.cont)
+(in-package :clpgk.base.cont)
 
 (defstruct promise status value)
 

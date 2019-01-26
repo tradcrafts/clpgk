@@ -1,4 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+;;
+;; -------------------------------------------------
+;; --------------ORIGINAL Qi LICENSE ---------------
+;; -------------------------------------------------
+;;
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and
@@ -27,7 +34,7 @@
   (SETF (READTABLE-CASE *READTABLE*) :PRESERVE)
   )
 
-(IN-PACKAGE :OLEO.EMBED.CORE)
+(IN-PACKAGE :CLPGK.EMBED.CORE)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 組み込み関数を追加する手順

@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
  
-(oleo.core:define-package :oleo.base.text* (:oleo.base.text)
+(clpgk.core:define-package :clpgk.base.text* (:clpgk.base.text)
   (:use :cl :cl-ppcre)
-  (:import/export :oleo.base.guard*)
+  (:import/export :clpgk.base.guard*)
 
   (:export
    #:=~ #:!~
@@ -24,4 +26,4 @@
    )
   )
 
-(in-package :oleo.base.text)
+(in-package :clpgk.base.text)

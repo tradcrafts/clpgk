@@ -1,6 +1,8 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(in-package :oleo.core.test)
+(in-package :clpgk.core.test)
 
 ;; 真の場合テストを完全に無効化する (最優先フラグ)
 (defvar *ignore-testing* nil) 

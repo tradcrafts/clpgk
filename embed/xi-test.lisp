@@ -1,8 +1,10 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.base:oleo-base-header :clap)
-(oleo.base:define-package :xi-test ()
-  (:use :cl :oleo.base :oleo.algebraic :oleo.embed))
+(clpgk.base:clpgk-base-header :clap)
+(clpgk.base:define-package :xi-test ()
+  (:use :cl :clpgk.base :clpgk.algebraic :clpgk.embed))
 
 (in-package :xi-test)
 
@@ -17,9 +19,9 @@
 #Verify
 (equal (test-fn-1 'a 'b) '(a b))
 
-;(intern "Unk" :OLEO.MSPACE)
-;(find-symbol "AWHEN" (find-package :OLEO.MSPACE))
-;(use-package :ANAPHORA :OLEO.MSPACE)
+;(intern "Unk" :CLPGK.MSPACE)
+;(find-symbol "AWHEN" (find-package :CLPGK.MSPACE))
+;(use-package :ANAPHORA :CLPGK.MSPACE)
 ;(\\LIST foo (~hello 1 2))
 
 (define-local-data xi-test-data xi/0 (xi/1 t) (xi/2 t t) (xi/3 t t t))

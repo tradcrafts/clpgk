@@ -1,23 +1,25 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package :oleo.embed.core :oleo.mspace)
+(use-package :clpgk.embed.core :clpgk.mspace)
 
 
-(let* ((*readtable* OLEO.EMBED.CORE:*qi-readtable*))
+(let* ((*readtable* CLPGK.EMBED.CORE:*qi-readtable*))
   (set-dispatch-macro-character 
    #\# #\{ 
-   #'oleo.base:|#{-READER|))
+   #'clpgk.base:|#{-READER|))
 
-;; (DEFUN OLEO.EMBED.CORE:QILOAD (filename)
+;; (DEFUN CLPGK.EMBED.CORE:QILOAD (filename)
 ;;   (let ((*package* (find-package :Q))
-;;         (*readtable* OLEO.EMBED.CORE:*qi-readtable*))
-;;     (OLEO.EMBED.CORE:|load| filename)))
+;;         (*readtable* CLPGK.EMBED.CORE:*qi-readtable*))
+;;     (CLPGK.EMBED.CORE:|load| filename)))
 
 
-(in-package :oleo.embed.core)
+(in-package :clpgk.embed.core)
 
 (defvar *<loading-results>*)
   
@@ -164,20 +166,20 @@
                        (funcall transformer raw-chars)
                        raw-chars))
               (raw-parsed (let ((*<caller-package>* *package*)
-                                (*package* (find-package :OLEO.MSPACE))
-                                (*readtable* OLEO.EMBED.CORE:*qi-readtable*)
+                                (*package* (find-package :CLPGK.MSPACE))
+                                (*readtable* CLPGK.EMBED.CORE:*qi-readtable*)
                                 (errstr "Xi.Core: parse failure: ~%~%~{~C~} ..."))
-                            (OLEO.EMBED.CORE::|compile| 'OLEO.EMBED.CORE::|<st_input>| chars errstr)))
+                            (CLPGK.EMBED.CORE::|compile| 'CLPGK.EMBED.CORE::|<st_input>| chars errstr)))
                                         ;`(progn ,@(mapcar (lambda (x) `(XI.CORE::|eval| ',x))
                                         ;                  parsed))))
-              (parsed (if (OLEO.EMBED.CORE::%need-trans-p% raw-parsed)
-                        (OLEO.EMBED.CORE::%trans% raw-parsed)
+              (parsed (if (CLPGK.EMBED.CORE::%need-trans-p% raw-parsed)
+                        (CLPGK.EMBED.CORE::%trans% raw-parsed)
                         raw-parsed))
               (form (if pre-execute
                       (let ((|*<definition-only-p>*| t))
-                        (OLEO.EMBED.CORE::%load% parsed)
+                        (CLPGK.EMBED.CORE::%load% parsed)
                         |*<definition-only-p>*|)
-                      `(OLEO.EMBED.CORE::%load% ',parsed))))
+                      `(CLPGK.EMBED.CORE::%load% ',parsed))))
          ;(WARN "~D" form)
          form
          ;; (if type-check
@@ -375,30 +377,30 @@
          (coerce footer 'list)))
 
 
-(oleo.base:define-lpar-backslash-reader "XI" (stream)
+(clpgk.base:define-lpar-backslash-reader "XI" (stream)
   (FORMAT T "\\XI is OBSOLETE~%")
   (qi-reader stream))
 
-(oleo.base:define-lpar-backslash-reader "XDEF" (stream)
+(clpgk.base:define-lpar-backslash-reader "XDEF" (stream)
   (FORMAT T "\\XDEF is OBSOLETE~%")
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")"))))
 
-(oleo.base:define-lpar-backslash-reader "XLAMBDA" (stream)
+(clpgk.base:define-lpar-backslash-reader "XLAMBDA" (stream)
   (FORMAT T "\\XLAMBDA is OBSOLETE~%")
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda " chars ")"))))
 
-(oleo.base:define-lpar-backslash-reader "XDEFUN" (stream)
+(clpgk.base:define-lpar-backslash-reader "XDEFUN" (stream)
   (FORMAT T "\\XDEFUN is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(oleo.base:define-lpar-backslash-reader "XDEFMACRO" (stream)
+(clpgk.base:define-lpar-backslash-reader "XDEFMACRO" (stream)
   (FORMAT T "\\XDEFMACRO is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T)
         (*<DEF-OP>* 'DEFMACRO))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(oleo.base:define-lpar-backslash-reader "X" (stream)
+(clpgk.base:define-lpar-backslash-reader "X" (stream)
   (FORMAT T "\\X is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T)
         (*<DEF-OP>* NIL))
@@ -406,64 +408,64 @@
 
 ;;;
 
-(oleo.base:define-lpar-backslash-reader "XENV" (stream)
+(clpgk.base:define-lpar-backslash-reader "XENV" (stream)
   (qi-reader stream))
 
-(oleo.base:define-lpar-backslash-reader "DEF" (stream)
+(clpgk.base:define-lpar-backslash-reader "DEF" (stream)
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")"))))
 
-(oleo.base:define-lpar-backslash-reader "LAMBDA" (stream)
+(clpgk.base:define-lpar-backslash-reader "LAMBDA" (stream)
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda " chars ")"))))
 
-(oleo.base:define-lpar-backslash-reader "DEFUN" (stream)
+(clpgk.base:define-lpar-backslash-reader "DEFUN" (stream)
   (let ((*<LOCALLY-LET-OP>* 'LABELS))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(oleo.base:define-lpar-backslash-reader "DEFMACRO" (stream)
+(clpgk.base:define-lpar-backslash-reader "DEFMACRO" (stream)
   (let ((*<LOCALLY-LET-OP>* 'LABELS)
         (*<DEF-OP>* 'DEFMACRO))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(oleo.base:define-lpar-backslash-reader "LET" (stream)
+(clpgk.base:define-lpar-backslash-reader "LET" (stream)
   (let ((*<LOCALLY-LET-OP>* 'FLET)
         (*<DEF-OP>* NIL))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(oleo.base:define-lpar-backslash-reader "LETREC" (stream)
+(clpgk.base:define-lpar-backslash-reader "LETREC" (stream)
   (let ((*<LOCALLY-LET-OP>* 'LABELS)
         (*<DEF-OP>* NIL))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
 (defun <deconstruct-lambda> (lambda-form) (third lambda-form))
 
-(oleo.base:define-lpar-backslash-reader "\\" (stream)
+(clpgk.base:define-lpar-backslash-reader "\\" (stream)
   (<deconstruct-lambda>
    (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda -> (" chars "))")))))
 
 
-(oleo.base:define-lpar-backslash-reader "|" (stream)
+(clpgk.base:define-lpar-backslash-reader "|" (stream)
   (<deconstruct-lambda>
    (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda -> [" chars "])")))))
 
-(oleo.base:define-lpar-backslash-reader "." (stream)
+(clpgk.base:define-lpar-backslash-reader "." (stream)
   (<deconstruct-lambda>
    (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda -> (/. " chars "))")))))
 
-(oleo.base:define-lpar-backslash-reader "~" (stream)
+(clpgk.base:define-lpar-backslash-reader "~" (stream)
   (<deconstruct-lambda>
    (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda -> " chars ")")))))
 
 
 ;;OBSOLETE
-;;(oleo.base:define-lpar-backslash-reader "XDECL" (stream)
+;;(clpgk.base:define-lpar-backslash-reader "XDECL" (stream)
 ;;  (qi-reader stream :transformer (lambda (chars) (<trans> "(decl " chars ")"))))
 
 ;;OBSOLETE
-;;(oleo.base:define-lpar-backslash-reader "X-YACC" (stream)
+;;(clpgk.base:define-lpar-backslash-reader "X-YACC" (stream)
 ;;  (qi-reader stream))
 
 
-;; (oleo.base:define-lpar-backslash-reader "X-PROLOG" (stream)
+;; (clpgk.base:define-lpar-backslash-reader "X-PROLOG" (stream)
 ;;   (do (c 
 ;;        tmp
 ;;        escape-flag
@@ -473,12 +475,12 @@
 ;;       (end-flag
 ;;        (let* ((chars (nreverse (cdr tmp)))
 ;;               (parsed (let ((*package* (find-package :Q))
-;;                             (*readtable* OLEO.EMBED.CORE:*qi-readtable*)
+;;                             (*readtable* CLPGK.EMBED.CORE:*qi-readtable*)
 ;;                             (errstr "syntax error in Prolog(Qi) here: ~%~%~{~C~}"))
-;;                         (OLEO.EMBED.CORE::|compile| 'OLEO.EMBED.CORE::|<horn_clauses>| chars errstr))))
-;;          (if (OLEO.EMBED.CORE::%need-trans-p% parsed)
-;;            `(OLEO.EMBED.CORE:|s-prolog| ',(OLEO.EMBED.CORE::%trans% parsed))
-;;            `(OLEO.EMBED.CORE:|s-prolog| ',parsed))))    
+;;                         (CLPGK.EMBED.CORE::|compile| 'CLPGK.EMBED.CORE::|<horn_clauses>| chars errstr))))
+;;          (if (CLPGK.EMBED.CORE::%need-trans-p% parsed)
+;;            `(CLPGK.EMBED.CORE:|s-prolog| ',(CLPGK.EMBED.CORE::%trans% parsed))
+;;            `(CLPGK.EMBED.CORE:|s-prolog| ',parsed))))    
     
 ;;     (unless (characterp (setq c (read-char stream)))
 ;;       (error "Xi.Core: unexpected end of stream"))
@@ -517,4 +519,4 @@
 ;;             (setq bar-flag (eq c #\|))))))
 
 
-(oleo.base:register-reader-registerer '|embed/1-finish-core| '<register-readers>)
+(clpgk.base:register-reader-registerer '|embed/1-finish-core| '<register-readers>)

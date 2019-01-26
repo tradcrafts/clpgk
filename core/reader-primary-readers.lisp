@@ -1,6 +1,8 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(in-package :oleo.core.reader)
+(in-package :clpgk.core.reader)
 (enable-annot-syntax)
 
 (defvar *<tmp-pkg>* (make-package "j-header-tmp"))
@@ -28,12 +30,12 @@
 
   ;;    (let (result
   ;;          (cur-pkg *package*))
-  ;;      (let* ((*package* (oleo.base:memoized (find-package :oleo.mspace)))
-  ;;             (*readtable* OLEO.LE.CORE:*QI-READTABLE*)
+  ;;      (let* ((*package* (clpgk.base:memoized (find-package :clpgk.mspace)))
+  ;;             (*readtable* CLPGK.LE.CORE:*QI-READTABLE*)
   ;;             (src (read stream t nil t)))
-  ;;        (setf result (if (OLEO.LE.CORE::%need-trans-p% src)
+  ;;        (setf result (if (CLPGK.LE.CORE::%need-trans-p% src)
   ;;                       (let ((*package* cur-pkg))
-  ;;                         (OLEO.LE.CORE::%trans% src))
+  ;;                         (CLPGK.LE.CORE::%trans% src))
   ;;                       src)))
   ;;      result)))
   @select-reader (:~ :mspace)
@@ -41,7 +43,7 @@
    #\# #\~
    (lambda (stream char1 char2)
      (declare (ignore char1 char2))
-     (let ((*package* (memoized (find-package :oleo.mspace)))
+     (let ((*package* (memoized (find-package :clpgk.mspace)))
            (*readtable* *<readtable/case>*))
        (read stream t nil t))))
 

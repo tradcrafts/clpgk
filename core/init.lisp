@@ -1,19 +1,21 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(defpackage :oleo.core.init
+(defpackage :clpgk.core.init
   (:use :cl :kmrcl)
   (:export
    #:define-package
    #:export*
    ))
 
-(in-package :oleo.core.init)
+(in-package :clpgk.core.init)
 
 (defgeneric <pkg-exports> (package))
 
 (defmethod <pkg-exports> ((x package))
   (declare (ignore x))
-  (warn "~D is not a OLEO:DEFINE-PACKAGE'ed package" (package-name *package*))
+  (warn "~D is not a CLPGK:DEFINE-PACKAGE'ed package" (package-name *package*))
   nil)
 
 (defmethod <pkg-exports> ((x (eql nil)))
@@ -172,7 +174,7 @@
                   (pushback-if-needed x given))
                 (pushback-if-needed sym-or-syms given)))
               (t
-               (warn "export*: ~D is not a OLEO:DEFINE-PACKAGE'ed package: use CL:EXPORT" (package-name *package*))
+               (warn "export*: ~D is not a CLPGK:DEFINE-PACKAGE'ed package: use CL:EXPORT" (package-name *package*))
                (export sym-or-syms))))))
     
     

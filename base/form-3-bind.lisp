@@ -1,8 +1,10 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(in-package :oleo.base.form)
+(in-package :clpgk.base.form)
 
 (defun <bind-make-defs> (params body)
   (bind (((bind-ptns rest-params) (<split-lambdalist> params)))

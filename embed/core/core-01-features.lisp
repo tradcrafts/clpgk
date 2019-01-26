@@ -1,4 +1,11 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
+;;
+;; -------------------------------------------------
+;; --------------ORIGINAL Qi LICENSE ---------------
+;; -------------------------------------------------
+;;
 ; Beginning of Licence
 ;
 ; This software is licensed only for personal and educational use and
@@ -27,7 +34,7 @@
   (SETF (READTABLE-CASE *READTABLE*) :PRESERVE)
   )
 
-(IN-PACKAGE :OLEO.EMBED.CORE)
+(IN-PACKAGE :CLPGK.EMBED.CORE)
 
 (PROCLAIM '(SPECIAL *multi* *strong-warning* *currfunc* *sysfuncs* *speed*
                     *alist* *exempted-macro* *history* *qi_home_directory*
@@ -61,7 +68,7 @@
 
 (DEFUN <intern> (tmpsym)
   (LET ((name (SYMBOL-NAME tmpsym))
-        (mpkg (MEMOIZED (FIND-PACKAGE :OLEO.MSPACE))))
+        (mpkg (MEMOIZED (FIND-PACKAGE :CLPGK.MSPACE))))
     (AIF (FIND-SYMBOL name)
          (PROGN (IMPORT IT mpkg)
                 IT)

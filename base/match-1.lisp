@@ -1,10 +1,12 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
+(clpgk.core:clpgk-core-header)
 
-(oleo.core:define-package :oleo.base.match* (:oleo.base.match)
+(clpgk.core:define-package :clpgk.base.match* (:clpgk.base.match)
   (:use :cl)
-  (:import/export :oleo.base.unify*)
+  (:import/export :clpgk.base.unify*)
   (:export
 
      #:define-match-slots      #:register-match-slots
@@ -31,7 +33,7 @@
 
      ))
 
-(in-package :oleo.base.match)
+(in-package :clpgk.base.match)
 
 (defun <register-readers> ()
   @select-reader :match
@@ -47,7 +49,7 @@
 ;(defmacro ab (body) `(lambda (a b) ,body))
   
 ;; j-unify-1.lisp内で参照される関数の実体を定義
-(defun oleo.base.unify::%make-match-code% (src ptns)
+(defun clpgk.base.unify::%make-match-code% (src ptns)
   `(do-match ,src ,(if (eq 1 (length ptns))
                        (first ptns)
                        `(:and ,@ptns))))
@@ -593,11 +595,11 @@
         (return-from |test| nil)))
 
     ((eq :match (first ptn))
-      `(unless ,(oleo.base.unify::%make-match-code% src (cdr ptn))
+      `(unless ,(clpgk.base.unify::%make-match-code% src (cdr ptn))
         (return-from |test| nil)))
         
     ((eq :unify (first ptn))
-      `(unless ,(oleo.base.unify::%make-unify-code% src (cdr ptn))
+      `(unless ,(clpgk.base.unify::%make-unify-code% src (cdr ptn))
         (return-from |test| nil)))
 
     ((eq :-> (first ptn))

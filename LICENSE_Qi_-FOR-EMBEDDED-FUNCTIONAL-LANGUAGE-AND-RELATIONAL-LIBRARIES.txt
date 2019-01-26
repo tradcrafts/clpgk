@@ -1,0 +1,23 @@
+
+; Beginning of Licence
+;
+; This software is licensed only for personal and educational use and
+; not for the production of commercial software.  Modifications to this
+; program are allowed but the resulting source must be annotated to
+; indicate the nature of and the author of these changes.  
+;
+; Any modified source is bound by this licence and must remain available 
+; as open source under the same conditions it was supplied and with this 
+; licence at the top.
+
+; This software is supplied AS IS without any warranty.  In no way shall 
+; Mark Tarver or Lambda Associates be held liable for any damages resulting 
+; from the use of this program.
+
+; The terms of these conditions remain binding unless the individual 
+; holds a valid license to use Qi commercially.  This license is found 
+; in the final page of 'Functional Programming in Qi'.  In that event 
+; the terms of that license apply to the license holder. 
+;
+; (c) copyright Mark Tarver, 2008
+; End of Licence

@@ -1,12 +1,14 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 ;; Haskell的な、代数的データ型の実現
-;; define-data,define-newtypeは、Qiとのシームレスな接続を実現
+;; define-data,define-newtypeは埋め込み言語とシームレスな接続を実現
 ;; define-internal-data,define-internal-newtypeは、CL内のみの使用を前提とした効率的な実装
 
-(oleo.base:define-package :oleo.algebraic.core ()
-  (:use :cl :oleo.base)
-  (:import/export :oleo.algebraic.xdata)
+(clpgk.base:define-package :clpgk.algebraic.core ()
+  (:use :cl :clpgk.base)
+  (:import/export :clpgk.algebraic.xdata)
   (:export
 
    #:applicable

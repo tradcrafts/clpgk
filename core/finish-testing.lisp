@@ -1,13 +1,15 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
 ;; テスト
-(eval-when (:compile-toplevel :load-toplevel :execute) (oleo.core.reader:enable-reader))
+(eval-when (:compile-toplevel :load-toplevel :execute) (clpgk.core.reader:enable-reader))
 
-(defpackage oleo.core.1-finish-testing
-  (:use :cl :oleo.core.test)
+(defpackage clpgk.core.1-finish-testing
+  (:use :cl :clpgk.core.test)
   )
 
-(in-package :oleo.core.1-finish-testing)
+(in-package :clpgk.core.1-finish-testing)
 
 #Testing WITH-COLLECT
 (check-unit (multiple-value-list _)

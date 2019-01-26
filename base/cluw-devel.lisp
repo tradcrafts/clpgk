@@ -1,7 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; This file is part of CLPGK.
+;; Copyright (c) 2019 PGkids Laboratory
 
-(oleo.core:oleo-core-header)
-(in-package :oleo.base)
+(clpgk.core:clpgk-core-header)
+(in-package :clpgk.base)
 
 (random 16)
 ;@eval-always
@@ -401,7 +403,7 @@
 
 (do-rebuild T (a ?b c ?b ?c) (setq b 3 c 0))
 
-(oleo.base.form::lambda/let ((:unify ?x)) x)
+(clpgk.base.form::lambda/let ((:unify ?x)) x)
     
 (do-unbuild-if ('(a #(x y x) r z) (? #(vector ?foo ?bar ?foo) . ?baz) :functional t :procedural nil)
   (progn ;(setq foo 'man bar 'chin baz (cdr baz))
