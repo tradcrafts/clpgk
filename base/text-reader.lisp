@@ -440,7 +440,7 @@ xx
 (defun foo (a b) #;destination=(progn t); `ok'
   ;; foo~D ~D \{a (1+ a)}\ baz ~D\{'man}\
   ;; and ~C\{#\newline}\~D\{b}\bar
-  ;; おま~%~D\{(+ a b 1000000)}\ ~*\{nil}\ちん
+  ;; FOO~%~D\{(+ a b 1000000)}\ ~*\{nil}\BAZ
   )
 (foo 10 200.2)
 
