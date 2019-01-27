@@ -26,12 +26,12 @@
                (:file "1-finish-core")
                (:file "package")
 
-               (:file "xi-test")
-               (:file "xi-test-pattern-match")
-               (:file "xi-test-where")
-               (:file "xi-test-let")
-               (:file "xi-test-case")
-               (:file "xi-devel")
+               (:file "embed-test")
+               (:file "embed-test-pattern-match")
+               (:file "embed-test-where")
+               (:file "embed-test-let")
+               (:file "embed-test-case")
+               (:file "embed-devel")
 
                ))
 

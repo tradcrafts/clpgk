@@ -3,9 +3,8 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (clpgk.base:clpgk-base-header)
-(in-package :clpgk.embed)
+(in-package :clpgk.embed.devel)
 
-(PRINT "THIS IS FINISH: XI_DEVEL_LISP")
 
 #Comment
 

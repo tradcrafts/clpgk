@@ -3,7 +3,7 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (clpgk.base:clpgk-base-header :xi)
-(in-package :xi-test)
+(in-package :clpgk.embed.test)
 
 #Verify 単純パターンマッチ
 (flet ((\let test

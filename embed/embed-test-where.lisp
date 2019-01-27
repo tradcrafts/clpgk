@@ -2,6 +2,6 @@
 ;; This file is part of CLPGK.
 ;; Copyright (c) 2019 PGkids Laboratory
 
-(clpgk.base:clpgk-base-header :clap)
-(in-package :xi-test)
+(clpgk.base:clpgk-base-header :xi)
+(in-package :clpgk.embed.test)
 

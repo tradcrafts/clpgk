@@ -3,10 +3,8 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (clpgk.base:clpgk-base-header :clap)
-(clpgk.base:define-package :xi-test ()
-  (:use :cl :clpgk.base :clpgk.algebraic :clpgk.embed))
 
-(in-package :xi-test)
+(in-package :clpgk.embed.test)
 
 @productive* (defun test-fn-1 (a b) (list a b))
 
