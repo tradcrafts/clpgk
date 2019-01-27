@@ -67,6 +67,9 @@
 (DEFUN lispForm (X &OPTIONAL inherits) (FUNCALL 'lisp-form inherits X))
 
 
+;; ERROR
+(DEFUN f_error (arg) (ERROR "CLPGK.EMBED: f_error ~W" arg))
+
 (DEFUN |@p| (a b)
   (XTUPLE* a b))
 

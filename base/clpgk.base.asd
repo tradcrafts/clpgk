@@ -3,6 +3,7 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (asdf:defsystem :clpgk.base
+  :license "LLGPL"
   :depends-on (:clpgk.core :alexandria :kmrcl :metabang-bind :split-sequence :anaphora
                            :cl-ppcre :cl-annot :cl-cont :cffi)
   :serial t

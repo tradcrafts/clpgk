@@ -3,6 +3,7 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (asdf:defsystem :clpgk.algebraic
+  :license "LLGPL"
   :depends-on (:clpgk.base)
   :serial t
   :components (

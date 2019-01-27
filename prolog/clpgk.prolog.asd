@@ -4,7 +4,8 @@
 
 (in-package :cl-user)
 
-(asdf:defsystem :clpgk.prolog
+(asdf:defsystem :clpgk.prolog  
+  :license "LLGPL"
   :depends-on (:clpgk.base)
   :serial t
   :components

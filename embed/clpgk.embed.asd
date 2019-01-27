@@ -5,6 +5,7 @@
 (in-package :cl-user)
 
 (asdf:defsystem :clpgk.embed
+  :license "Qi"
   :depends-on (:clpgk.base :clpgk.algebraic :clpgk.prolog)
   :serial t
   :components ((:file "0-prepare-core")

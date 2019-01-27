@@ -3,8 +3,7 @@
 ;; Copyright (c) 2019 PGkids Laboratory
 
 (asdf:defsystem :clpgk.namespaces
-  :version "0.1"
-  :author "j"
+  :license "LLGPL / Qi"
   :depends-on ()
   :serial t
   :components

@@ -376,31 +376,35 @@
          chars
          (coerce footer 'list)))
 
-
-(clpgk.base:define-lpar-backslash-reader "XI" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "XI" (stream)
   (FORMAT T "\\XI is OBSOLETE~%")
   (qi-reader stream))
 
-(clpgk.base:define-lpar-backslash-reader "XDEF" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "XDEF" (stream)
   (FORMAT T "\\XDEF is OBSOLETE~%")
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")"))))
 
-(clpgk.base:define-lpar-backslash-reader "XLAMBDA" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "XLAMBDA" (stream)
   (FORMAT T "\\XLAMBDA is OBSOLETE~%")
   (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def xi_lambda " chars ")"))))
 
-(clpgk.base:define-lpar-backslash-reader "XDEFUN" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "XDEFUN" (stream)
   (FORMAT T "\\XDEFUN is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
-
-(clpgk.base:define-lpar-backslash-reader "XDEFMACRO" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "XDEFMACRO" (stream)
   (FORMAT T "\\XDEFMACRO is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T)
         (*<DEF-OP>* 'DEFMACRO))
     (qi-reader stream :pre-execute t :transformer (lambda (chars) (<trans> "(def " chars ")")))))
 
-(clpgk.base:define-lpar-backslash-reader "X" (stream)
+;; OBSOLETE
+'(clpgk.base:define-lpar-backslash-reader "X" (stream)
   (FORMAT T "\\X is OBSOLETE~%")
   (let ((*<LOCALLY-P>* T)
         (*<DEF-OP>* NIL))
