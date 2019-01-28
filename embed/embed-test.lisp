@@ -6,6 +6,14 @@
 
 (in-package :clpgk.embed.test)
 
+
+(\def <func> X Y -> [X Y])
+#Verify
+(and (equal (\\(flip <func>) 1 2) '(2 1))
+     (equal (\\((flip) <func>) 1 2) '(2 1)))
+
+;(funcall (funcall (\\flip) #'LIST) 10 20)
+
 @productive* (defun test-fn-1 (a b) (list a b))
 
 #Verify

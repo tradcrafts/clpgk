@@ -58,7 +58,7 @@
     #:regex #:$ #:$? ;; <- 正規表現関係
     #:closure? #:function? #:callable? #:list? #:&cons! #:&cons
      ;;
-     #:def
+     #:def 
      #:unsafeCast #:<<xi-simple-fail>> #:unsafeFail #:failed? #:fork
      ))
 
@@ -87,7 +87,7 @@
         #:loop #:while #:until #:break #:BREAK #:provide #:provide* #:for #:count
         #:case #:xi_lambda #:lambda #:fork #:=> #:view #:|@sv*| #:|@| #:unless #:== #:!= #:=== #:!== 
         
-        #:let*
+        #:let* #:compose #:flip
         ;; &で始まるシンボルはQSPACEにインターンされるため、特にグローバルなシンボルについてはエクスポートしておく
         #:&CONS #:&CONS! #:&LIST #:&LIST*))
 

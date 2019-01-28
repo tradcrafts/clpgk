@@ -70,6 +70,36 @@
 ;; ERROR
 (DEFUN f_error (arg) (ERROR "CLPGK.EMBED: f_error ~W" arg))
 
+;;
+(DEFMACRO DEFINE-SYNTAX (syntax-name (&REST lambda-list) &BODY body)
+  `(PROGN
+     (SETF (GET ',syntax-name '|%qi-syntax%|)
+             (LAMBDA ,lambda-list ,@body))
+     ',syntax-name))
+
+(DEFINE-SYNTAX compose (&REST args)
+  (CASE (LENGTH args)
+    (0 (COPY-LIST '(/. G F (compose G F))))
+    (1 (LET ((V (GENSYM "V")))
+         `(/. ,V (compose ,(FIRST args) ,V))))
+    (T (LET ((V (GENSYM "V")))
+         `(/. ,V
+              ,(REDUCE #'LIST args :FROM-END T :INITIAL-VALUE V))))))
+
+(DEFUN compose (&REST args)
+  (APPLY #'COMPOSE args))
+
+(DEFINE-SYNTAX flip (&REST args)
+  (CASE (LENGTH args)
+    (0 (COPY-LIST '(/. F (flip F))))
+    (1 (LET ((A (GENSYM "A"))
+             (B (GENSYM "B")))
+         `(/. ,A ,B (,(FIRST args) ,B ,A))))
+    (T (ERROR "flip: too many args"))))
+
+(DEFUN flip (f)
+  (APPLICABLE (LAMBDA (a b) (FUNCALL f b a))))
+
 (DEFUN |@p| (a b)
   (XTUPLE* a b))
 

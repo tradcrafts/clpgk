@@ -98,7 +98,7 @@
                                                                                              (SYMBOLP (FIRST c))
                                                                                              (var? (SECOND c)))))
                                                                         (SECOND lisp-code)))))
-                                             (ERROR "Xi: :WITH Syntax Error"))
+                                             (ERROR "WITH: Syntax Error"))
 
                                            (UNLESS (LISTP (SECOND lisp-code))
                                              (SETF (SECOND lisp-code) (ENSURE-LIST (SECOND lisp-code))))
@@ -583,7 +583,7 @@
                                         (:UNIFY '<<lisp/unify>>))))
                          (LIST binder info src exp)))
                      (T (proc_specialforms (LIST 'case src dst '-> exp))))))
-           (T (ERROR "jun let error!"))))
+           (T (ERROR "let: error"))))
 
    ;; Added by JUN
    ;; where bindフォームの展開 
@@ -616,7 +616,7 @@
          (CONSP (CDDDR V1)))
      (LET ((arity (LIST-LENGTH (CDR V1))))
        (WHEN (> arity *TUPLE-MAX*) 
-         (ERROR "(xi: in (@p ...): too many elements: MAX=~A" *TUPLE-MAX*))
+         (ERROR "(in (@p ...): too many elements: MAX=~A" *TUPLE-MAX*))
        (proc_specialforms (CONS (SVREF CLPGK.ALGEBRAIC.CORE::%TUPLE-CONVERSION-VECTOR% arity) (CDR V1)))))
 
    ;; HACK [2018-09-14] 効率のよい実装にすべき
