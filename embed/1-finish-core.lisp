@@ -145,9 +145,10 @@
 
 ;; (\リーダの定義
 
-(defun <terminated?> (x)
+(defun <terminated?> (x &rest more-terminators)
   (or (not (characterp x))
-      (member x '(#\" #\( #\) #\[ #\] #\. #\, #\Space #\Tab #\Return #\Newline))))
+      (member x '(#\" #\( #\) #\[ #\] #\. #\, #\Space #\Tab #\Return #\Newline))
+      (member x more-terminators)))
 
 (defun qi-reader (stream &key transformer pre-execute)
   (do (c 
@@ -168,7 +169,7 @@
               (raw-parsed (let ((*<caller-package>* *package*)
                                 (*package* (find-package :CLPGK.MSPACE))
                                 (*readtable* CLPGK.EMBED.CORE:*qi-readtable*)
-                                (errstr "Xi.Core: parse failure: ~%~%~{~C~} ..."))
+                                (errstr "CLPGK.EMBED.CORE: parse: failure: ~%~%~{~C~} ..."))
                             (CLPGK.EMBED.CORE::|compile| 'CLPGK.EMBED.CORE::|<st_input>| chars errstr)))
                                         ;`(progn ,@(mapcar (lambda (x) `(XI.CORE::|eval| ',x))
                                         ;                  parsed))))
@@ -188,7 +189,7 @@
          ))
     
     (unless (characterp (setq c (read-char stream)))
-      (error "Xi.Core: unexpected end of stream"))
+      (error "CLPGK.EMBED.CORE: unexpected end of stream"))
     
 
     (when reserve-op-mode
@@ -309,7 +310,8 @@
 
           ((and (eq c #\.) (consp tmp) (digit-char-p (car tmp))
                 (<terminated?> (find-if-not (lambda (x) (and (characterp x) (digit-char-p x)))
-                                            tmp)))
+                                            tmp)
+                               #\-))
             (setq float-flag t)
             )
           
