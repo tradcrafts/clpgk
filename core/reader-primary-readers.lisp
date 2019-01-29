@@ -17,7 +17,7 @@
                                       (lambda (c) (not (member c '(#\) #\Space #\Newline #\Tab #\Return)))))))
           (t (coerce (list first) 'string)))))
 
-(defun <register-primary-readers> ()
+(defun <register-primary-readers-for-mspace> ()
 
   ;; mspaceへのシンボルのインターン
   ;; ~fooBar は USER::|fooBar|のショートカットとなる
@@ -45,10 +45,11 @@
      (declare (ignore char1 char2))
      (let ((*package* (memoized (find-package :clpgk.mspace)))
            (*readtable* *<readtable/case>*))
-       (read stream t nil t))))
+       (read stream t nil t)))))
 
 
-  ;; 入力マクロ #}
+(defun <register-primary-readers-for-others> ()
+  ;; 入力マクロ #{
   ;; #}exp -> (cl-cont:without-call/cc exp)
   @select-reader (:~)
   (set-dispatch-macro-character 
@@ -254,6 +255,9 @@
                    (error "reader-macro ##: invalid @where clause ~D" xs))
                  (setq xs (cdr xs)))
                (t (push (car xs) ys)))))))
+  )
+
+(defun <register-primary-readers-for-lpar> ()
 
   @select-reader (:embed)
   (set-macro-character
@@ -335,7 +339,9 @@
      `(let ((_ ,x)) ,main))))
 
 
-(register-reader-registerer '|primary| '<register-primary-readers>)
+(register-reader-registerer :mspace '<register-primary-readers-for-mspace>)
+(register-reader-registerer :lpar '<register-primary-readers-for-lpar>)
+(register-reader-registerer '|primary| '<register-primary-readers-for-others>)
 
 ;; OBSOLETE
 '(set-dispatch-macro-character 

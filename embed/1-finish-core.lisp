@@ -525,4 +525,4 @@
 ;;             (setq bar-flag (eq c #\|))))))
 
 
-(clpgk.base:register-reader-registerer '|embed/1-finish-core| '<register-readers>)
+(clpgk.base:register-reader-registerer :embed '<register-readers>)
