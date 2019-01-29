@@ -32,7 +32,7 @@
 (defvar *extra-procedures-alist* nil)
 
 (defun register-optional-reader (ident function-designator)
-  (format t "::::::REGISTER:::::::  ~A~%" ident)
+  ;(format t "~%READER REGISTERED: ~A~%" ident)
   (let ((pair (assoc ident *extra-procedures-alist*)))
     (if pair
       (setf (cdr pair) function-designator)

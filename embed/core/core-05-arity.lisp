@@ -84,41 +84,21 @@
 
 (strong-warning '-)         
 
-'(DEFUN initialise_arity_table ()
- (store_arities
-  '(and -1 append 2 apply 2 arity 1 assoc 2 assoc-type 2 boolean? 1 cd 1 character? 1 
-    compile 2 complex? 1 concat 2 congruent? 2 cons 2 cons? 1 declare 2 debug 1 destroy 1 
-    delete-file 1 difference 2 dump 1 echo 1 element? 2 empty? 1 eval 1 explode 1 fail-if 2
-    fix 2 float? 1 freeze 1 fst 1 gensym 1 get-array 3 get-prop 3 qi_> 2 qi_>= 2 qi_= 2 
-    head 1 if 3 if-with-checking 1 if-without-checking 1 integer? 1 inferences 1 
-    intersection 2 length 1 lineread 0 load 1 qi_< 2 qi_<= 2 m-prolog 1 make-array 1 map 2
-    mapcan 2 maxinferences 1 newsym 1 newvar 1 not 1 nth 2 number? 1 occurs-check 1
-    occurrences 2 occurs-check 1 or -1 opaque 1 print 1 profile 1 profile-results 1 ps 1 put-array 3
-    put-prop 3 random 1 quit 0 read-char 1 read-file-as-charlist 1 read-file 1
-    read-chars-as-stringlist 2 rational? 1 real? 1 remove 2 reverse 1 round 1 save 0 snd 1
-    s-prolog 1 specialise 1 spy 1 speed 1 sqrt 1 step 1 string? 1 strong-warning 1 subst 3 
-    sugar 3 sugarlist 1 symbol? 1 tail 1 tc 1 thaw 1 time 1 track 1 transparent 1 tuple? 1 tuple 2
-    type 1 typecheck 3 unassoc-type 1 unprofile 1 unsugar 1 undebug 1 union 2 untrack 1 unspecialise 1 value 1
-    variable? 1 version 1 warn 1 write-to-file 2 y-or-n? 1 + 2 * 2 / 2 - 2  |@p| 2 |@sv| -1 svlen 1 svref 2
-    preclude 1 include 1 preclude-all-but 1 include-all-but 1 where 2
-    closure? 1 function? 1 callable? 1 list? 1 none -1 only -1
-    qi_/= 2 unsafeCast 1 <<xi-simple-fail>> 1 unsafeFail 1 failed? 1 fork 3
-    delay 1 force 1 & 1 ! 1 promise? 1 &cons 2 &cons! 2
-    regex -1 $ 2 $? 2
-    )))
-
-'(initialise_arity_table)
 
 (REGISTER-ARITY 'and -1) (REGISTER-ARITY 'append 2 -1) (REGISTER-ARITY 'apply 2)
 (REGISTER-ARITY 'arity 1) (REGISTER-ARITY 'assoc 2)
 (REGISTER-ARITY 'assoc-type 2) (REGISTER-ARITY 'boolean? 1)
-(REGISTER-ARITY 'cd 1) (REGISTER-ARITY 'character? 1)
-(REGISTER-ARITY 'compile 2) (REGISTER-ARITY 'complex? 1)
-(REGISTER-ARITY 'concat 2) (REGISTER-ARITY 'congruent? 2)
+;(REGISTER-ARITY 'cd 1)
+(REGISTER-ARITY 'character? 1)
+;(REGISTER-ARITY 'compile 2)
+(REGISTER-ARITY 'complex? 1)
+(REGISTER-ARITY 'concat -1) (REGISTER-ARITY 'congruent? 2)
 (REGISTER-ARITY 'cons 2) (REGISTER-ARITY 'cons? 1) (REGISTER-ARITY 'declare 2)
-(REGISTER-ARITY 'debug 1) (REGISTER-ARITY 'destroy 1)
-(REGISTER-ARITY 'delete-file 1) (REGISTER-ARITY 'difference 2)
-(REGISTER-ARITY 'dump 1) (REGISTER-ARITY 'echo 1) (REGISTER-ARITY 'element? 2)
+(REGISTER-ARITY 'destroy 1)
+;(REGISTER-ARITY 'delete-file 1)
+(REGISTER-ARITY 'difference 2)
+;(REGISTER-ARITY 'dump 1) (REGISTER-ARITY 'echo 1)
+(REGISTER-ARITY 'element? 2)
 (REGISTER-ARITY 'empty? 1) (REGISTER-ARITY 'eval 1)
 (REGISTER-ARITY 'explode 1) (REGISTER-ARITY 'fail-if 2)
 (REGISTER-ARITY 'fix 2) (REGISTER-ARITY 'float? 1) (REGISTER-ARITY 'freeze 1)
@@ -133,13 +113,13 @@
 (REGISTER-ARITY 'qi_<= 2) (REGISTER-ARITY 'm-prolog 1)
 (REGISTER-ARITY 'make-array 1) (REGISTER-ARITY 'map 2)
 (REGISTER-ARITY 'mapcan 2) (REGISTER-ARITY 'maxinferences 1)
-(REGISTER-ARITY 'newsym 1) (REGISTER-ARITY 'newvar 1) (REGISTER-ARITY 'not 1)
+(REGISTER-ARITY 'not 1)
 (REGISTER-ARITY 'nth 2) (REGISTER-ARITY 'number? 1)
 (REGISTER-ARITY 'occurs-check 1) (REGISTER-ARITY 'occurrences 2)
 (REGISTER-ARITY 'occurs-check 1) (REGISTER-ARITY 'or -1)
 (REGISTER-ARITY 'opaque 1) (REGISTER-ARITY 'print 1)
 (REGISTER-ARITY 'profile 1) (REGISTER-ARITY 'profile-results 1)
-(REGISTER-ARITY 'ps 1) (REGISTER-ARITY 'put-array 3)
+(REGISTER-ARITY 'put-array 3)
 (REGISTER-ARITY 'put-prop 3) (REGISTER-ARITY 'random 1)
 (REGISTER-ARITY 'quit 0) (REGISTER-ARITY 'read-char 1)
 (REGISTER-ARITY 'read-file-as-charlist 1) (REGISTER-ARITY 'read-file 1)
@@ -158,10 +138,10 @@
 (REGISTER-ARITY 'tuple 2) (REGISTER-ARITY 'type 1)
 (REGISTER-ARITY 'typecheck 3) (REGISTER-ARITY 'unassoc-type 1)
 (REGISTER-ARITY 'unprofile 1) (REGISTER-ARITY 'unsugar 1)
-(REGISTER-ARITY 'undebug 1) (REGISTER-ARITY 'union 2)
+(REGISTER-ARITY 'union 2)
 (REGISTER-ARITY 'untrack 1) (REGISTER-ARITY 'unspecialise 1)
 (REGISTER-ARITY 'value 1) (REGISTER-ARITY 'variable? 1)
-(REGISTER-ARITY 'version 1) (REGISTER-ARITY 'warn 1)
+(REGISTER-ARITY 'warn 1)
 (REGISTER-ARITY 'write-to-file 2) (REGISTER-ARITY 'y-or-n? 1)
 (REGISTER-ARITY '+ 2 -1) (REGISTER-ARITY '* 2 -1) (REGISTER-ARITY '/ 2 -1)
 (REGISTER-ARITY '- 2 -1)
@@ -179,30 +159,6 @@
 (REGISTER-ARITY 'promise? 1) (REGISTER-ARITY '&cons 2)
 (REGISTER-ARITY '&cons! 2) (REGISTER-ARITY 'regex -1) (REGISTER-ARITY '$ 2)
 (REGISTER-ARITY '$? 2)
+(REGISTER-ARITY 'zip -1) (REGISTER-ARITY 'unzip 1)
 
 
-'(DEFUN conv ()
- (DO ((src  '(and -1 append 2 apply 2 arity 1 assoc 2 assoc-type 2 boolean? 1 cd 1 character? 1 
-              compile 2 complex? 1 concat 2 congruent? 2 cons 2 cons? 1 declare 2 debug 1 destroy 1 
-              delete-file 1 difference 2 dump 1 echo 1 element? 2 empty? 1 eval 1 explode 1 fail-if 2
-              fix 2 float? 1 freeze 1 fst 1 gensym 1 get-array 3 get-prop 3 qi_> 2 qi_>= 2 qi_= 2 
-              head 1 if 3 if-with-checking 1 if-without-checking 1 integer? 1 inferences 1 
-              intersection 2 length 1 lineread 0 load 1 qi_< 2 qi_<= 2 m-prolog 1 make-array 1 map 2
-              mapcan 2 maxinferences 1 newsym 1 newvar 1 not 1 nth 2 number? 1 occurs-check 1
-              occurrences 2 occurs-check 1 or -1 opaque 1 print 1 profile 1 profile-results 1 ps 1 put-array 3
-              put-prop 3 random 1 quit 0 read-char 1 read-file-as-charlist 1 read-file 1
-              read-chars-as-stringlist 2 rational? 1 real? 1 remove 2 reverse 1 round 1 save 0 snd 1
-              s-prolog 1 specialise 1 spy 1 speed 1 sqrt 1 step 1 string? 1 strong-warning 1 subst 3 
-              sugar 3 sugarlist 1 symbol? 1 tail 1 tc 1 thaw 1 time 1 track 1 transparent 1 tuple? 1 tuple 2
-              type 1 typecheck 3 unassoc-type 1 unprofile 1 unsugar 1 undebug 1 union 2 untrack 1 unspecialise 1 value 1
-              variable? 1 version 1 warn 1 write-to-file 2 y-or-n? 1 + 2 * 2 / 2 - 2  |@p| 2 |@sv| -1 svlen 1 svref 2
-              preclude 1 include 1 preclude-all-but 1 include-all-but 1 where 2
-              closure? 1 function? 1 callable? 1 list? 1 none -1 only -1
-              qi_/= 2 unsafeCast 1 <<xi-simple-fail>> 1 unsafeFail 1 failed? 1 fork 3
-              delay 1 force 1 & 1 ! 1 promise? 1 &cons 2 &cons! 2
-              regex -1 $ 2 $? 2
-              )
-            (CDDR src))
-      tmp)
-     ((NULL src) (nreverse tmp))
-   (push `(REGISTER-ARITY ,(FIRST src) ,(SECOND src)) tmp)))

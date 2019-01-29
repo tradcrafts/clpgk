@@ -464,7 +464,12 @@
         `(<<case>> ,(proc_specialforms (<ensure-complex-expressions> (SECOND V1)))
                    ,@(proc_specialforms (<rule/body/transform> (CDDR V1))))))
 
-    ;; HACK JUN
+   ;; ユーザ定義のQi構文 define-qi-syntaxで定義されたものの適用
+   ((AND (CONSP V1) (SYMBOLP (CAR V1)) (GET (CAR V1) '%qi-syntax%))
+     (LET ((fn (GET (CAR V1) '%qi-syntax%)))
+       (proc_specialforms (APPLY fn (CDR V1)))))
+
+   ;; HACK JUN
     ;; Tupleの型表現 (A,B,C,...) --> (A * B * C * ...)
     ((AND (CONSP V1)
           (NOT (EQL '|,| (CAR V1)))
@@ -695,10 +700,6 @@
                        (CONS '|{| (THE LIST (APPEND Signature (LIST '|}|) Rules)))))))))
    
    
-   ;; ユーザ定義のQi構文 define-qi-syntaxで定義されたものの適用
-   ((AND (CONSP V1) (SYMBOLP (CAR V1)) (GET (CAR V1) '%qi-syntax%))
-     (LET ((fn (GET (CAR V1) '%qi-syntax%)))
-       (proc_specialforms (APPLY fn (CDR V1)))))
    
    ;; それ以外のフォーム（無展開）
    (T V1)))

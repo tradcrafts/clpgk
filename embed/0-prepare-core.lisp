@@ -47,7 +47,7 @@
    
    )
   (:USE :CL :CLPGK.BASE :CLPGK.ALGEBRAIC.CORE :CLPGK.ALGEBRAIC.XDATA :CLPGK.PROLOG)
-  (:SHADOW CL:DEFUN)
+  ;(:SHADOW CL:DEFUN)
   )
 
 (DEFVAR CLPGK.EMBED.CORE:*QI-READTABLE* *READTABLE*)
@@ -55,19 +55,20 @@
 (IN-PACKAGE :CLPGK.EMBED.CORE)
 
 
-(DEFPARAMETER *<DEFTEST>* NIL)
-(DEFPARAMETER *<DEFREMS>* NIL)
-(DEFMACRO DEFUN (NAME LL &REST BODY)
-  (MULTIPLE-VALUE-BIND (body decls doc-string) (PARSE-BODY BODY :DOCUMENTATION T) 
-  `(PROGN (PUSHNEW ',NAME *<DEFTEST>*)
-          (CL:DEFUN ,NAME ,LL
-            ,@(WHEN doc-string (LIST doc-string))
-            ,@decls
-            (SETQ *<DEFTEST>* (REMOVE ',NAME *<DEFTEST>*))
-            (PUSHNEW ',NAME *<DEFREMS>*)
-            ,@body)
-          )))
-
+;; (EVAL-WHEN ()
+;; (DEFPARAMETER *<DEFTEST>* NIL)
+;; (DEFPARAMETER *<DEFREMS>* NIL)
+;; (DEFMACRO DEFUN (NAME LL &REST BODY)
+;;   (MULTIPLE-VALUE-BIND (body decls doc-string) (PARSE-BODY BODY :DOCUMENTATION T) 
+;;   `(PROGN (PUSHNEW ',NAME *<DEFTEST>*)
+;;           (CL:DEFUN ,NAME ,LL
+;;             ,@(WHEN doc-string (LIST doc-string))
+;;             ,@decls
+;;             (SETQ *<DEFTEST>* (REMOVE ',NAME *<DEFTEST>*))
+;;             (PUSHNEW ',NAME *<DEFREMS>*)
+;;             ,@body)
+;;           )))
+;; )
 
 
 ;(EVAL-WHEN (:COMPILE-TOPLEVEL :LOAD-TOPLEVEL :EXECUTE)

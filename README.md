@@ -2,23 +2,25 @@
 This file is part of CLPGK  
 Copyright (c) 2019 PGkids Laboratory  
 
+##本パッケージについて
 本パッケージは弊社の業務で使うことを前提とした大規模な基礎ライブラリ群と、リードマクロを用いた埋め込み関数型言語から成っております。
 行儀の悪いオレオレライブラリの典型的なやつです。  
 世間様に公開する予定は当初ありませんでしたが、埋め込み関数型言語が予想以上にいろいろな場面で便利に使えるため公開した次第です。  
 ソースコードはところどころものすごく汚く乱雑でTODOとWARNINGの嵐ですが、何卒ご容赦をば。  
 
-動作条件  
+##動作条件  
 SBCLおよびCCLをターゲットとしています  
 Allegroは導入していないのでわかりません  
 CLISPは試みましたがお手上げです(最適化要件を満たしていないので仮に動いたとしても正常動作はしないでしょう)  
 オールインワンLisp環境のPortacleでも問題なく動作しました(SBCLなのでWindows版では下記の修正が必要です)  
 末尾再帰最適化など適切な最適化が随所でなされる処理系であることをことを前提としています  
 
-インストール方法  
+##インストール方法  
 Quicklispのlocal-projectsディレクトリ以下に展開後、(ql::register-local-projects)で登録、(ql:quickload :clpgk)でロードできます。  
 Windows版のSBCLでは依存ライブラリであるkmrclのコンパイル中にエラーが出ると思いますが、signals.lispの当該箇所を条件コンパイルすることで回避できます。  
 回避例:  
-    #+sbcl (sb-sys:enable-interrupt signum handler)  
+```
+    #+sbcl (sb-sys:enable-interrupt signum handler)
 FIX:-->  
     #+(and sbcl unix) (sb-sys:enable-interrupt signum handler)  
     #+(and sbcl win32) (error "kmrcl:set-signal-handler is disabled (win32)")  
@@ -26,13 +28,14 @@ FIX:-->
 FIX-->  
     #+(and sbcl unix) (sb-sys:enable-interrupt signum (or old-handler :default))  
     #+(and sbcl win32) (error "kmrcl:remove-signal-handler is disabled (win32)")  
+```
 
 とりあえずWindowsで動かしてみる場合にはCCLのほうが手っ取り早いと思います。ただし、SLIME上で埋め込み関数型言語を扱うのならSBCLがおすすめです。  
 
-ライセンスの特異性について  
+##ライセンスの特異性について  
 CLPGKの提供する埋め込み関数型言語はQi(現在はshenという言語に進化したらしい）というCommon Lispで実装された非常にユニークな関数型言語のコアをゴリゴリに改変して実装しています。  
 このQiには独自のライセンスが付属していて、簡単に言えば個人使用と教育目的は許諾するがクローズドな利用と商用利用は許諾しませんよ(クローズドな利用もしくは商用利用をしたければQiの解説書を買ってください)というものなのですが、この解説書というのが洋書かつ絶版で事実上日本国内では入手不可能であり、従ってクローズドな利用も商用利用も現時点ではもはや不可能ということになります。  
 Qiのソースコード(Qiコンパイラの吐いたCLコードを含む)を利用した本ライブラリも自動的にこのQiライセンスに感染しますので、Qiのコードに由来する埋め込み言語や関連ライブラリを利用した瞬間にクローズドソース及び商用には使えないという極めて残念な事態が生じることになります。  
 たいへん心苦しい限りですが、面倒くさいのでQi由来の部分はそのままQiライセンスを継承することにしました。  
   
-それ以外の部分はLLGPLとしておりますので自由度は高いです。  
+**それ以外の部分はLLGPL**としておりますので自由度は高いです。  

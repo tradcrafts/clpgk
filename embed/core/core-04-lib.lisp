@@ -79,12 +79,14 @@
 
 (DEFINE-SYNTAX compose (&REST args)
   (CASE (LENGTH args)
-    (0 (COPY-LIST '(/. G F (compose G F))))
-    (1 (LET ((V (GENSYM "V")))
-         `(/. ,V (compose ,(FIRST args) ,V))))
-    (T (LET ((V (GENSYM "V")))
-         `(/. ,V
-              ,(REDUCE #'LIST args :FROM-END T :INITIAL-VALUE V))))))
+    (0 (COPY-LIST '(/. G F (/. X (G (F X))))))
+    (1 (LET ((X (GENSYM "X"))
+             (F (GENSYM "F"))
+             (G (FIRST args)))
+         `(/. ,F (/. ,X (,G (apply ,F ,X))))))
+    (T (LET ((X (GENSYM "X")))
+         `(/. ,X
+              ,(REDUCE #'LIST args :FROM-END T :INITIAL-VALUE X))))))
 
 (DEFUN compose (&REST args)
   (APPLY #'COMPOSE args))
@@ -99,6 +101,21 @@
 
 (DEFUN flip (f)
   (APPLICABLE (LAMBDA (a b) (FUNCALL f b a))))
+
+(DEFUN wrap (val)
+  (IF val 'true 'false))
+(DEFINE-COMPILER-MACRO wrap (val)
+  `(IF ,val 'true 'false))
+(DEFUN <unwrap-error> (x) (ERROR "CLPGK.EMBED.CORE: unwrap: ~A is not a boolean" x))
+(DEFUN unwrap (q_bool)
+  (COND ((EQ q_bool 'true) T)
+        ((EQ q_bool 'false) NIL)
+        (T (<unwrap-error> q_bool))))
+(DEFINE-COMPILER-MACRO unwrap (q_bool)
+  `(LET ((x ,q_bool))
+     (COND ((EQ x 'true) T)
+           ((EQ x 'false) NIL)
+           (T (<unwrap-error> x)))))
 
 (DEFUN |@p| (a b)
   (XTUPLE* a b))
@@ -448,14 +465,28 @@
 ;;   (IF (= N 1) (IF (NULL L) (error "nth expects a longer list.~%") (CAR L))
 ;;       (nth (1- N) (CDR L))))
 
-;; JUN HACKED (optimize)
+;; fixed
 (DEFUN |nth| (n xs)
-  (LET ((c (NTHCDR n xs)))
+  (LET ((c (&NTHCDR n xs)))
     (IF c
-      (CAR c)
+      (&CAR c)
       (error "nth expects a longer list.~%"))))
 
-(DEFUN concat (X Y) (READ-FROM-STRING (FORMAT NIL "~A~A" X Y)))
+ 
+;;(DEFUN concat (X Y) (READ-FROM-STRING (FORMAT NIL "~A~A" X Y)))
+
+;; 第一引数のシーケンスの型に合わせて非破壊連結するよう変更
+(DEFUN concat (&REST seqs)
+  (WHEN (NULL seqs)
+    (ERROR "CLPGK.EMBED.CORE: concat: call with no arg"))
+
+  (LET ((result-type (TYPECASE (FIRST seqs)
+                       (STRING 'STRING)
+                       (VECTOR 'VECTOR)
+                       (LIST   'LIST))))
+    (APPLY 'CONCATENATE result-type seqs)))
+
+
 
 (DEFUN append (X Y) (APPEND X Y))
 
@@ -469,6 +500,10 @@
 
 (DEFUN cons? (X) (IF (CONSP X) 'true 'false))
 (DEFUN list? (X) (IF (LISTP X) 'true 'false))
+
+;todo zip,unzipの遅延リストへの対応
+(DEFUN zip (&REST xss) (APPLY #'ZIP xss))
+(DEFUN unzip (xs) (UNZIP xs))
 
 (DEFUN closure? (X) (IF (FUNCTIONP X) 'true 'false))
 (DEFUN function? (X) (IF (OR (FUNCTIONP X) (AND (SYMBOLP X) (FBOUNDP X))) 'true 'false))
@@ -485,10 +520,10 @@
 (DEFUN explode (X) (COERCE (FORMAT NIL "~S" X) 'LIST))
 
 (DEFUN head (X)
- (IF (CONSP X) (CAR X) (ERROR "head expects a non-empty list.~% ")))
+ (IF (CONSP X) (&CAR X) (ERROR "head expects a non-empty list.~% ")))
 
 (DEFUN tail (X)
- (IF (CONSP X) (CDR X) (ERROR "tail expects a non-empty list.~% ")))
+ (IF (CONSP X) (&CDR X) (ERROR "tail expects a non-empty list.~% ")))
 
 (DEFUN tuple? (X) (IF (TUPLE-P X) 'true 'false))
 
@@ -631,9 +666,9 @@
 (DEFMACRO &cons! (A B) (LIST '&CONS! A B))
 
 
-(DEFUN ps (X) (PPRINT (source_code X)))
+;(DEFUN ps (X) (PPRINT (source_code X)))
 
-(DEFUN abort () (ERROR ""))
+(DEFUN abort () (ERROR "CLPGK.EMBED.CORE: aborted by (abort)"))
 
 (DEFUN read-char (X) (DECLARE (IGNORE X)) (READ-CHAR))
 
@@ -669,13 +704,13 @@
 (DEFUN put-array (array dims value)
  (SETF (APPLY #'AREF (CONS array dims)) value))
 
-(DEFUN debug (X)
-  (DECLARE (IGNORE X)) 
-  (IF (PROBE-FILE "debug.txt") (DELETE-FILE "debug.txt")) 
-  (DRIBBLE (FORMAT NIL "~A~A" *qi_home_directory* "debug.txt"))
-  "done")
+;; (DEFUN debug (X)
+;;   (DECLARE (IGNORE X)) 
+;;   (IF (PROBE-FILE "debug.txt") (DELETE-FILE "debug.txt")) 
+;;   (DRIBBLE (FORMAT NIL "~A~A" *qi_home_directory* "debug.txt"))
+;;   "done")
 
-(DEFUN undebug (X) (DECLARE (IGNORE X)) (DRIBBLE) "done")
+;; (DEFUN undebug (X) (DECLARE (IGNORE X)) (DRIBBLE) "done")
 
 (DEFUN version (X) (SETQ *version* X))
 

@@ -8,11 +8,24 @@
 
 
 (\def <func> X Y -> [X Y])
-#Verify
+#Verify flip
+t
 (and (equal (\\(flip <func>) 1 2) '(2 1))
-     (equal (\\((flip) <func>) 1 2) '(2 1)))
+     (equal (\\((flip) <func>) 1 2) '(2 1))
+     (equal (funcall (funcall (\\flip) #'LIST) 10 20) '(20 10)))
 
-;(funcall (funcall (\\flip) #'LIST) 10 20)
+(\def <f1> X -> [1 X])
+(\def <f2> X -> [2 X])
+#Verify compose
+t
+'(and (equal (\\(compose <f1> <f2>) a) '(1 (2 #~a)))
+     (equal (funcall (\\(compose <f1>) <f2>) 'a) '(1 (2 a))))
+     ;(equal (funcall (\\compose) #'list #'list) '(1 (2 a)))
+     
+                                        ;(funcall (\\compose <f1> <f2>) 'a)
+
+;(\\/. A (compose A))
+
 
 @productive* (defun test-fn-1 (a b) (list a b))
 
@@ -82,7 +95,7 @@
 
 ;; 正規表現は |m/PTN/OPTS| と |PTN|が等価表現である。
 ;; 置換 |s/PTN/REPLACE/OPTS|は|s/PTN/REPLACE/|として省略可能である
-;; |r/PTN/OPTS| または |r/PTN/| は、PPCREやCLUWのテキストライブラリでそのまま使える正規表現スキャナを返す
+;; |r/PTN/OPTS| または |r/PTN/| は、PPCREなどのテキストライブラリでそのまま使える正規表現スキャナを返す
 
 
 ;;文字列以外は偽にするようにする
@@ -660,7 +673,6 @@
         1,(< Y 0) -> second
         _ -> third))
 
-#; --MAYBE DONE-- 直前のスコープに出てくる変数しか直接的な関数適用表現ができない問題 (apply F X)で回避できるが
 ;; (<test> #'sqrt 16 0)
 
 #Verify
@@ -676,7 +688,7 @@
         1 _,(< Y 0) -> second
         _ _ -> third))
 
-#; これはうまくいく
+; これはうまくいく
 (<test> #'sqrt 16 0)
 
                                         ;(print '(\xi (@p a b c) (@foo bar baz) @nothing (@just 1) @just [] [1 2] ))
