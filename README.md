@@ -93,7 +93,7 @@ Evaluation took:
   460,313 processor cycles
   4,088 bytes consed
 ```
-遅延リストを用いたエラトステネスのふるいによる無元素数列の生成
+遅延リストを用いたエラトステネスのふるいによる無限素数列の生成
 ```lisp
 (\def canDivide?
       _ [] -> false
@@ -137,6 +137,16 @@ EVAL===> 結果省略
   (let ((lazy-primes (getprimes (\|2..) nil)))
     (print (pgk:&take! 100 lazy-primes))))
 EVAL===> 結果省略
+
+```
+無限フィボナッチ数列の生成
+```lisp
+(flet ((\letrec fib A B -> [A : (fib B (+ A B))]))
+  (let ((lazy-fibs (fib 0 1)))
+    (pgk:&take! 20 lazy-fibs)))
+
+EVAL===>
+(0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765)
 
 ```
 埋め込みラムダ式によって返されるクロージャは、引数が不足している場合には自動的に部分適用される便利な仕様です
