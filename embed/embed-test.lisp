@@ -293,16 +293,17 @@ t
        (equal '(#~a 3 4 5 6) (test '(3 4 5 . 6)))
        (equal '(#~a 3 4 5 (6 7 . 8)) (test '(3 4 5 6 7 . 8)))))
 
-#;書き直せ [2018-09-14]
 #Verify 中置コンマ記法と非中置記法の検証
-'(flet ((\let test
+(flet ((\let test
          (,A B C D) -> [A B C D]
          (,A,B,C) -> [A B C]
          (#A B C D) -> (#v,A,B,C,D)
          (#A,B,C) -> (#v A B C)
+         _ -> ng
          ))
-  (and (equal '(1 2 3 4) (test (xtuple 1 (xtuple 2 (xtuple 3 4)))))
-       (equal '(2 3 4) (test (xtuple 2 (xtuple 3 4))))
+  
+  (and (equal '(1 2 3 4) (test (\\@p 1 2 3 4)))
+       (equal '(2 3 4) (test (\\@p 2 3 4)))
        (equalp #(#~v 1 2 3 4) (test #(1 2 3 4)))
        (equalp #(#~v 2 3 4) (test #(2 3 4)))
        ))

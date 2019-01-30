@@ -312,8 +312,7 @@
                            c         (read-char stream)))))
            )
          
-         #; "改行コードの扱い"
-         @todo
+         ;todo "改行コードの扱い"
          (unless (eq c #\Return)
            (when (and readable? c)
              (push c tmp))))

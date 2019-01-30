@@ -171,7 +171,7 @@
   `(and ,@(mapcar #/(<pred-code> _ var)
                   preds)))
 
-@todo
+; todo
 (defmacro predicate (&rest preds)
   (with-gensyms (var)
     `(lambda (,var) ,(<pred-main> preds var))))

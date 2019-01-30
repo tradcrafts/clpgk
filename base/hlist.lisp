@@ -76,7 +76,7 @@
     (format stream "[~A]" (hcell-value obj))
     (format stream "{~A}" (hcell-value obj))))
 
-#; describe-object
+;; todo describe-object
 (defmethod describe-object ((obj hcell) stream)
   (declare (ignore obj))
   (format stream "HLIST"))

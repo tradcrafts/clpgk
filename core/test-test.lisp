@@ -45,9 +45,9 @@
    (precond)
    (precond 'name)
    ;; TODO xに対する警告
-   (todo.. let ((x 'name)) (precond (identity x)))
+   ;(todo.. let ((x 'name)) (precond (identity x)))
    ;; TODO xに対する警告がない
-   (todo.. let ((x 'name)) (precond (identity x) :assert t))
+   ;(todo.. let ((x 'name)) (precond (identity x) :assert t))
    (precond :context x)
    (precond :assert)
    (precond :assert t)

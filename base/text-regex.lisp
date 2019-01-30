@@ -298,7 +298,7 @@
 
 ;;(text-scan "foo|bar" ",,foo::barboz" :strict t :pre-skip ",+" :post-skip ":+" :sub-result :positions)
 
-#; `retry' `strict' の追加
+;; todo  `retry' `strict' の追加
 
 ;;;;;;;;;;;;;;;;;;
 ;; allow-unmatched or allow-terminated VERSION

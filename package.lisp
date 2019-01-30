@@ -16,10 +16,8 @@
 
 (in-package :clpgk)
 
-(defmacro pgk-mode (&optional full-mode)
-  (if full-mode
-    '(clpgk.base:clpgk-base-header)
-    '(clpgk.base:clpgk-base-header :embed :lpar :mspace)))
+(defmacro pgk-mode (&rest other-modes)
+  `(clpgk.base:clpgk-base-header :embed :lpar :mspace ,@other-modes))
 
 (defmacro pgk-full-mode ()
   '(clpgk.base:clpgk-base-header))

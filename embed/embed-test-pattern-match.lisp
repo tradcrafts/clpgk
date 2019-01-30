@@ -49,10 +49,8 @@
        (= 5 (test '(a b c d e)))))
 
 
-#; TODO
-#; 書き直せ [2018-09-14]
 #Verify タプルのパターンマッチ＆ガード
-'(flet ((\let test
+(flet ((\let test
          (@p A B),(cons? B) -> A
          (@p _ []) -> nul
          (,A,B,B,C) -> [A B C]
@@ -61,8 +59,8 @@
   (and (= 2 (test (xtuple 1 2)))
        (= 1 (test (xtuple 1 '(2))))
        (eq '#~nul (test (xtuple 0 nil)))
-       (equal '(4 3 2 1) (test (xtuple 4 (xtuple 3 (xtuple 2 1)))))
-       (equal '(1 2 3) (test (xtuple 1 (xtuple 2 (xtuple 2 3)))))
+       (equal '(4 3 2 1) (test (\\@p 4 3 2 1)))
+       (equal '(1 2 3) (test (\\@p 1 2 2 3)))
        ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
