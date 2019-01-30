@@ -34,7 +34,7 @@ FIX-->
 
 ## 埋め込み実例
 ５行クイックソート
-```
+```lisp
 (in-package :cl-user)
 (pgk:pgk-mode) ;; enable pgk reader
 
