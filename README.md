@@ -75,7 +75,7 @@ EVAL==>
 ```
 
 遅延評価を用いたたらいまわし関数の定義 (当然爆速です)
-```
+```lisp
 (\def tarai
       (! X) (! Y) _,(<= X Y)  -> Y
       (! X) (! Y) (& Z) -> (tarai (&(tarai (1- X) Y Z))
@@ -94,7 +94,7 @@ Evaluation took:
   4,088 bytes consed
 ```
 遅延リストを用いたエラトステネスのふるいによる無元素数列の生成
-```
+```lisp
 (\def canDivide?
       _ [] -> false
       N [P::Ps] -> (if (= 0 (MOD N P)) true (canDivide? N Ps)))
@@ -140,7 +140,7 @@ EVAL===> 結果省略
 
 ```
 埋め込みラムダ式によって返されるクロージャは、引数が不足している場合には自動的に部分適用される便利な仕様です
-```
+```lisp
 (let ((f (\. X Y Z -> [Z Y X])))
   (print (funcall f 1 2 3))
   (print (funcall (funcall f 4 5) 6))
