@@ -130,7 +130,7 @@ EVAL===> 結果省略
            _ [] -> false
            N [P::Ps] -> (if (= 0 (MOD N P)) true (canDivide? N Ps)))         
          (\letrec getPrimes
-           [N::Ns] Ps -> (if (canDivide? N Ps)
+           [N::Ns] Ps -> (if (CANDIVIDE? N Ps)
                            (getPrimes Ns Ps)
                            [N : (getPrimes Ns [N::Ps])])))
   ;; 同様に最初の１００個の素数を得る
