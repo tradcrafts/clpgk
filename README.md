@@ -36,7 +36,7 @@ FIX-->
 ５行クイックソート
 ```
 (in-package :cl-user)
-(pgk:pgk-mode)
+(pgk:pgk-mode) ;; enable pgk reader
 
 (\def qsort
       [] -> []
@@ -76,9 +76,6 @@ EVAL==>
 
 遅延評価を用いたたらいまわし関数の定義 (当然爆速です)
 ```
-(in-package :cl-user)
-(pgk:pgk-mode)
-
 (\def tarai
       (! X) (! Y) _,(<= X Y)  -> Y
       (! X) (! Y) (& Z) -> (tarai (&(tarai (1- X) Y Z))
@@ -142,7 +139,18 @@ EVAL===> 結果省略
 EVAL===> 結果省略
 
 ```
+埋め込みラムダ式によって返されるクロージャは、引数が不足している場合には自動的に部分適用される便利な仕様です
+```
+(let ((f (\. X Y Z -> [Z Y X])))
+  (print (funcall f 1 2 3))
+  (print (funcall (funcall f 4 5) 6))
+  (print (funcall (funcall (funcall f 7) 8) 9)))
 
+EVAL===>
+(3 2 1) 
+(6 5 4) 
+(9 8 7)
+```
 
 ## ライセンスの特異性について  
 CLPGKの提供する埋め込み関数型言語はQi(現在はshenという言語に進化したらしい）というCommon Lispで実装された非常にユニークな関数型言語のコアをゴリゴリに改変して実装しています。  
