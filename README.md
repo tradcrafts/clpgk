@@ -32,6 +32,28 @@ FIX-->
 
 とりあえずWindowsで動かしてみる場合にはCCLのほうが手っ取り早いと思います。ただし、SLIME上で埋め込み関数型言語を扱うのならSBCLがおすすめです。  
 
+## 埋め込み実例
+```lisp
+(in-package :cl-user)
+(pgk:pgk-mode)
+
+(\def tarai
+      (! X) (! Y) _,(<= X Y)  -> Y
+      (! X) (! Y) (& Z) -> (tarai (&(tarai (1- X) Y Z))
+                                  (&(tarai (1- Y) Z X))
+                                  (&(tarai (1- Z) X Y))))
+
+(time (format t "Answer: ~A~%" (#~tarai 12 6 0)))
+>>>
+Answer: 12
+Evaluation took:
+  0.000 seconds of real time
+  0.000000 seconds of total run time (0.000000 user, 0.000000 system)
+  100.00% CPU
+  460,313 processor cycles
+  4,088 bytes consed
+```
+
 ## ライセンスの特異性について  
 CLPGKの提供する埋め込み関数型言語はQi(現在はshenという言語に進化したらしい）というCommon Lispで実装された非常にユニークな関数型言語のコアをゴリゴリに改変して実装しています。  
 このQiには独自のライセンスが付属していて、簡単に言えば個人使用と教育目的は許諾するがクローズドな利用と商用利用は許諾しませんよ(クローズドな利用もしくは商用利用をしたければQiの解説書を買ってください)というものなのですが、この解説書というのが洋書かつ絶版で事実上日本国内では入手不可能であり、従ってクローズドな利用も商用利用も現時点ではもはや不可能ということになります。  
