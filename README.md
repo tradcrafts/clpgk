@@ -19,7 +19,7 @@ CLISPは試みましたがお手上げです(最適化要件を満たしてい�
 Quicklispのlocal-projectsディレクトリ以下に展開後、(ql::register-local-projects)で登録、(ql:quickload :clpgk)でロードできます。  
 **Windows版のSBCLでは依存ライブラリであるkmrclのインストール中にエラーが出る**と思いますが、signals.lispの当該箇所を条件コンパイルすることで回避できます。  
 回避例:  
-```
+```lisp:(kmrcl)signals.lisp
     #+sbcl (sb-sys:enable-interrupt signum handler)
 FIX:-->  
     #+(and sbcl unix) (sb-sys:enable-interrupt signum handler)  
