@@ -33,7 +33,49 @@ FIX-->
 とりあえずWindowsで動かしてみる場合にはCCLのほうが手っ取り早いと思います。ただし、SLIME上で埋め込み関数型言語を扱うのならSBCLがおすすめです。  
 
 ## 埋め込み実例
-```lisp
+５行クイックソート
+```
+(in-package :cl-user)
+(pgk:pgk-mode)
+
+(\def qsort
+      [] -> []
+      [P::Xs] -> (let Smaller [A :: A<-Xs, if (<= A P)]
+                      Larger  [B :: B<-Xs, if (> B P)]
+                      (append (qsort Smaller) [P] (qsort Larger))))
+
+(let* ((src-xs (pgk:shuffle (\|1...30)))
+       (sorted (#~qsort src-xs)))
+  (print src-xs)
+  (print sorted))
+
+EVAL===>
+(2 10 23 6 4 1 9 16 13 3 30 27 15 22 12 18 24 17 7 29 21 26 5 8 11 14 20 28 19
+ 25) 
+(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+ 30) 
+
+
+;; あるいはfletに埋め込む方法も (再帰を伴う場合は\letrecを使う)
+(flet ((\letrec qsort
+         [] -> []
+         [P::Xs] -> (let Smaller [A :: A<-Xs, if (<= A P)]
+                         Larger  [B :: B<-Xs, if (> B P)]
+                         (append (qsort Smaller) [P] (qsort Larger)))))
+  (let* ((src-xs (pgk:shuffle (\|1...30)))
+         (sorted (qsort src-xs)))
+    (print src-xs)
+    (print sorted)))
+
+EVAL==>
+(27 12 1 23 18 5 6 16 26 30 15 28 10 22 19 3 24 29 13 21 20 11 2 7 17 9 8 4 14
+ 25) 
+(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+ 30) 
+```
+
+遅延評価を用いたたらいまわし関数の定義 (当然爆速です)
+```
 (in-package :cl-user)
 (pgk:pgk-mode)
 
@@ -44,7 +86,8 @@ FIX-->
                                   (&(tarai (1- Z) X Y))))
 
 (time (format t "Answer: ~A~%" (#~tarai 12 6 0)))
->>>
+
+EVAL===>
 Answer: 12
 Evaluation took:
   0.000 seconds of real time
@@ -53,6 +96,53 @@ Evaluation took:
   460,313 processor cycles
   4,088 bytes consed
 ```
+遅延リストを用いたエラトステネスのふるいによる無元素数列の生成
+```
+(\def canDivide?
+      _ [] -> false
+      N [P::Ps] -> (if (= 0 (MOD N P)) true (canDivide? N Ps)))
+
+(\def getPrimes
+      [N::Ns] Ps -> (if (canDivide? N Ps)
+                      (getPrimes Ns Ps)
+                      [N : (getPrimes Ns [N::Ps])]))
+
+;; 無限素数リストから最初の１００個の素数を得る
+(let ((lazy-primes (\\getPrimes [2..] [])))
+  (print (pgk:&take! 100 lazy-primes)))
+
+EVAL===>
+(2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103
+ 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199
+ 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313
+ 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433
+ 439 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547) 
+ 
+;; 実装例２: ガードを用いる (若干非効率的になるがコードはなんとなくかっこいい)
+(\def getPrimes2
+      [N::Ns] Ps, (canDivide? N Ps) -> (getPrimes Ns Ps)
+      [N::Ns] Ps -> [N : (getPrimes Ns [N::Ps])])
+
+;; 同様に最初の１００個の素数を得る
+(let ((lazy-primes (\\getPrimes2 [2..] [])))
+  (print (pgk:&take! 100 lazy-primes)))
+EVAL===> 結果省略
+
+;; 実装例３: あるいはlabelsに埋め込む方法も
+(labels ((\letrec canDivide?
+           _ [] -> false
+           N [P::Ps] -> (if (= 0 (MOD N P)) true (canDivide? N Ps)))         
+         (\letrec getPrimes
+           [N::Ns] Ps -> (if (canDivide? N Ps)
+                           (getPrimes Ns Ps)
+                           [N : (getPrimes Ns [N::Ps])])))
+  ;; 同様に最初の１００個の素数を得る
+  (let ((lazy-primes (getprimes (\|2..) nil)))
+    (print (pgk:&take! 100 lazy-primes))))
+EVAL===> 結果省略
+
+```
+
 
 ## ライセンスの特異性について  
 CLPGKの提供する埋め込み関数型言語はQi(現在はshenという言語に進化したらしい）というCommon Lispで実装された非常にユニークな関数型言語のコアをゴリゴリに改変して実装しています。  
