@@ -75,7 +75,7 @@
                        #:non-positive-rational 	#:non-positive-rational-p #:non-positive-real 	#:non-positive-real-p
                        #:non-positive-short-float 	#:non-positive-short-float-p
                        #:non-positive-single-float 	#:non-positive-single-float-p
-                       #:nreversef 	#:nth-value-or #:nunionf 	#:of-type #:once-only 	#:ordinary-lambda-list-keywords
+                       #:nreversef 	#:nth-value-or #:nunionf 	#:of-type #:once-only
                        #:parse-body 	#:parse-ordinary-lambda-list #:plist-alist 	#:plist-hash-table
                        #:positive-double-float 	#:positive-double-float-p #:positive-fixnum 	#:positive-fixnum-p
                        #:positive-float 	#:positive-float-p #:positive-integer 	#:positive-integer-p
