@@ -8,10 +8,10 @@
 (in-package :clpgk.base.text)
 
 
-#Verify このファイルがCRLF形式であることの確認
-(equal #"foo\r\nbar"
-       "foo
-bar")
+; #Verify このファイルがCRLF形式であることの確認
+;(equal #"foo\r\nbar"
+;       "foo
+;bar")
 
 #Verify キャリッジリターンが正しく無視されるかの確認
 (equal #"foo

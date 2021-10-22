@@ -4,11 +4,11 @@
 
 (clpgk.base:define-package :clpgk ()
   (:use :cl)
-  (:nicknames :pgk)
+  (:nicknames :kit :k :pgk)
   (:import/export :clpgk.base :clpgk.algebraic.core :clpgk.embed :clpgk.prolog)
   (:export
-   #:pgk-full-mode
-   #:pgk-mode
+   #:pgk-full-mode #:pgk-mode
+   #:full-mode #:mode
    )
   (:unexport
    #:clpgk-base-header)
@@ -22,7 +22,11 @@
 (defmacro pgk-full-mode ()
   '(clpgk.base:clpgk-base-header))
 
+(defmacro mode (&rest other-modes)
+  `(pgk-mode ,@other-modes))
 
+(defmacro full-mode ()
+  '(pgk-full-mode))
 
 
 
