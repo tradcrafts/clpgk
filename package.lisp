@@ -4,7 +4,7 @@
 
 (clpgk.base:define-package :clpgk ()
   (:use :cl)
-  (:nicknames :kit :k :pgk)
+  (:nicknames :pgk)
   (:import/export :clpgk.base :clpgk.algebraic.core :clpgk.embed :clpgk.prolog)
   (:export
    #:pgk-full-mode #:pgk-mode
