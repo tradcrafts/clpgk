@@ -2,7 +2,7 @@
 This file is part of CLPGK  
 Copyright (c) 2019 PGkids Laboratory  
 
-**本パッケージの開発はFREEZEし、オリジナルの開発者にリポジトリが移譲されました**
+(2021/10) **本パッケージの開発はFREEZEし、オリジナルの開発者にリポジトリが移譲されました**
 
 
 ## 本パッケージについて
