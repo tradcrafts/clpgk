@@ -1,11 +1,11 @@
 <!--dd -*- coding: utf-8 -*- -->  
 (2021/10) ※ **本パッケージの開発はFREEZEし、オリジナルの開発者にリポジトリが移譲されました**
 
-(2021/10) ※ **CL-JKit, CL-JKit-plusに内容とライセンスがそれぞれ分割されました**
+(2021/10) ※ **tradcrafts/CL-JKit, tradcrafts/CL-JKit-plusに内容とライセンスがそれぞれ実験的に分割移譲されました**
 
+(2021/12) ※ **lisp3dev/lisp3dev, lisp3dev/lisp3advに再分割のうえ完全に再移譲されました、よってこのリポジトリはこの状態のまま凍結します。**
 
-This file is part of CLPGK  
-Copyright (c) 2019 PGkids Laboratory  
+以下の記述は2019年のオリジナルです。
 
 
 
